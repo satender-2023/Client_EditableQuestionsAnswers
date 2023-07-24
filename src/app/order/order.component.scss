@@ -1,0 +1,74 @@
+@import "./../../assets/scss/common.scss";
+
+.order-accepted {
+    background-color: $goldentheme-header-background;
+    border-radius: $goldentheme-border-radius;
+    color: $goldentheme-headertext-color;
+    padding: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+
+    .check-icon {
+        color: $goldentheme-badge-text;
+    }
+}
+
+.order-progress-container {
+    margin-bottom: 10px;
+
+    .order-progress {
+        background-color: $goldentheme-headertext-color;
+        color: $goldentheme-badge-text;
+        border-radius: 20px;
+        padding: 5px;
+        display: inline;
+    
+        .clock-icon {
+            color: $goldentheme-badge-text;
+        }
+    }
+}
+
+.quantity-readonly-container {
+    margin-bottom: 10px;
+    .quantity-value {
+        background-color: $pending-status-background;
+        border: solid 1px $box-shadow-color;
+        border-radius: 20px;
+        padding: 2px 10px;
+    }
+}
+
+.order-page-info {
+    width: 64%;
+    display: block;
+    margin: auto;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        width: 94% !important;
+    }
+}
+
+.product-ordered-datecontainer {
+    .ordered-date-title {
+        color: $goldentheme-header-background;
+        font-weight: bold;
+        @media screen and (max-width: 768px) {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.place-order-btn {
+    @media screen and (max-width: 768px) {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+  }
+  
+  .remove-btn {
+    @media screen and (max-width: 768px) {
+        width: 100% !important;
+    }
+  }

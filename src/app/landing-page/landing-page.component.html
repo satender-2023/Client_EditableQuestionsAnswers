@@ -1,0 +1,38 @@
+<div class="landing-page carousel-container" *ngIf="this.randomProductsArr">
+    <div class="new-arrival-slides">
+        <carousel>
+            <slide class="new-arrival-slide" *ngFor="let item of this.randomProductsArr;let i=index">
+                <img *ngIf="i!=1" src="{{item}}" alt="first slide" class="carousel-img">
+                <div *ngIf="i==1" class="video-container">
+                    <video #videoPlayer class="video-item" playsinline="playsinline" muted="true"
+                        oncanplay="this.play()" autoplay="true" loop="loop">
+                        <source src="{{item}}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-caption d-absolute banner-text" *ngIf="item.indexOf(3)==-1">
+                    <!-- <h2 class="header-text">New Arrival</h2>
+                    <p class="header-text-details">
+                        Our all new product.
+                    </p> -->
+                    <button class="btn btn-primary btn-color-1" (click)="showAllProducts()">Show All Products</button>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+    <div class="col-12">
+        <div class="categories-header">Our Categories</div>
+    </div>
+    <div class="product-percategory-slides fade fadeOut">
+        <carousel [isAnimated]="true" [showIndicators]="showIndicator" [itemsPerSlide]="itemsPerSlide"
+            [singleSlideOffset]="singleSlideOffset" [noWrap]="!noWrap" [interval]="5000" [startFromIndex]="0"
+            (slideRangeChange)="onSlideRangeChange($event)">
+            <slide *ngFor="let slide of productPerCategorySlides; let index=index" (click)="showCategories()">
+                <img class="img-responsive center-block" [src]="slide.image" alt="image slide"
+                    style="display: block; width: 100%;">
+                <div class="carousel-caption">
+                    <h4 class="carousel-text">{{slide.data.categoryName}}</h4>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div>

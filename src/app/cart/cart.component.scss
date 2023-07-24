@@ -1,0 +1,80 @@
+@import "./../../assets/scss/common.scss";
+
+.cart-checkbox-container {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+        margin-bottom: 15px;
+    }
+
+    .cart-item-checkbox {
+        font-family: system-ui, sans-serif;
+        font-size: 21rem;
+        font-weight: bold;
+        line-height: 1.1;
+        display: grid;
+        grid-template-columns: 1em auto;
+        gap: 0.5em;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.cart-item-selected {
+    background-color: $box-shadow-color;
+}
+
+.mutiple-selection-actionbtns {
+    background-color: $cart-sticky-background;
+    position: sticky;
+    top: 55px;
+    padding: 10px;
+    font-size: 20px;
+    width: 65%;
+    z-index: 999;
+    margin: auto;
+    border: solid 1px $box-shadow-color;
+    transition: width 2s, opacity 0.5s linear;
+    background-color: $goldentheme-panel-background;
+    border-radius: $goldentheme-border-radius;
+
+    @media screen and (max-width: 768px) {
+        width: 93% !important;
+        top: 0px;
+    }
+
+    .btn-outline {
+        margin-right: 5px;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .multiselect-btns-container {
+        @media screen and (max-width: 768px) {
+            margin-bottom: 10px;
+        }
+    }
+
+    .select-deselect-btncontainer {
+        @media screen and (max-width: 768px) {
+            padding-right: 0px;
+        }
+    }
+}
+
+.select-deselect-btncontainer {
+    margin-bottom: 15px !important;
+}
+
+.place-order-btn {
+    @media screen and (max-width: 768px) {
+        width: 50% !important;
+    }
+  }
+  
+  .remove-btn {
+    @media screen and (max-width: 768px) {
+        width: 41% !important;
+    }
+  }

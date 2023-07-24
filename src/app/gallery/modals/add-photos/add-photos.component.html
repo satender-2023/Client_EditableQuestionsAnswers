@@ -1,0 +1,67 @@
+<div class="confirm-order-modal">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Photos</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-md-3 col-4 form-label">
+                    <p>Title</p>
+                </div>
+                <div class="col-md-9 col-8">
+                    <input type="text" class="form-control form-input">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-md-3 col-4 form-label">
+                    <p>Description</p>
+                </div>
+                <div class="col-md-9 col-8">
+                    <textarea name="" id="" class="form-control form-input"></textarea>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-md-3 col-4 form-label">
+                    <p>Add Image</p>
+                </div>
+                <div class="col-md-9 col-8">
+                    <label class="custom-file-upload">
+                        <input type="file" (change)="onselectFile($event)"  multiple/>
+                        Choose Photo
+                    </label>
+                </div>
+                <div class="col-12 form-label">
+                    <img *ngFor='let url of urls' [src]="url" alt="" class="chooseImg">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group ">
+
+            <div class="row choose-btn">
+                <div class="offset-md-1 col-md-5 col-6">
+                    <button type="button" class="btn btn-light btn-add photo-btn">Save</button>
+
+                </div>
+                <div class="col-md-4 col-6">
+                    <button type="button" class="btn btn-light btn-cancel photo-btn" (click)="modalRef?.hide()">cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

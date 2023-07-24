@@ -1,0 +1,76 @@
+<header>
+  <div [ngClass]="userName? 'flex-column': 'user-loggedin'"
+    class="page-header d-flex flex-md-row align-items-center px-md-4 box-shadow" role="img"
+    aria-label="frontend interview questions">
+    <div class="col-md-2 col-12 font-weight-normal project-name hand-cursor">
+      <a href="/#/home">
+        <img src="../../../assets/images/rasahriday-logo.png" alt="Frontend interview questions" class="project-icon">
+        <div class="project-text display-inline">
+          <h1 class="logo-text display-inline">
+            <span class="first-line">Rasahriday</span>
+          </h1>
+        </div>
+      </a>
+      <span id="menubars" class="col-4">
+        <span class="cart-menubar-container">
+          <span class="d-block d-sm-none header-nav" *ngIf="userName">
+            <a class="nav-links" href="/#/carts">
+              <fa-icon class="cart-icon" [icon]="faCartPlus"></fa-icon>
+              <span *ngIf="cartItems && cartItems>0" class="badge badge-light">{{cartItems}}</span>
+            </a>
+          </span>
+          <fa-icon class="menu-bar-icon" [icon]="faBars" (click)="openSiderBar()"></fa-icon>
+        </span> 
+      </span>
+    </div>
+    <div *ngIf="userName" [ngClass]="userName && !isLandingPage ? 'shown': 'hidden'"
+      class="form-inline col-md-4 col-12 searchbox-container">
+      <!-- <form #myForm= "ngForm"> -->
+      <input name="searchVal" #searchString [(ngModel)]="searchVal" class="form-control mr-sm-2 col-md-9 search-input" type="text"
+        (keydown)="checkEnterKeyPressed(searchString.value,$event)" placeholder="Search" aria-label="Search">
+      <button class="btn my-2 my-sm-0 col-md-2 hand-cursor search-btn"
+        (click)="searchByPage(searchString.value)">Search</button>
+      <!-- </form> -->
+    </div>
+    <div class="col-md-3 header-nav d-none d-md-block">
+      <span class="header-links">
+        <a class="nav-links" href="/#/products">
+          Products
+        </a>
+      </span>
+      <span class="header-links" *ngIf="userName">
+        <a class="nav-links" href="/#/carts">
+           Carts
+          <fa-icon class="cart-icon" [icon]="faCartPlus"></fa-icon>
+          <span *ngIf="cartItems && cartItems>0" class="badge badge-light">{{cartItems}}</span>
+        </a>
+      </span>
+      <span class="header-links" *ngIf="userName">
+        <a class="nav-links" href="/#/orders">
+          Orders
+        </a>
+      </span>
+      <span class="header-links" id="about-us-label" (click)="openAboutusModal()">About Us</span>
+    </div>
+    <div *ngIf="userName" class="offset-lg-2 offset-md-2 col-1 btn-group d-none d-md-block loggedin-user" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle"
+        aria-controls="dropdown-basic">
+        {{userName}}
+        <span class="caret"></span>
+        <fa-icon [icon]="faUserCircle"></fa-icon>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="logOut()" href="javascript:void(0)">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!userName && !this.loginPage" class="login-link-container d-none d-md-block col-md-7 col-3">
+      <a class="login-link" href="/#/login">
+        Login
+        <fa-icon [icon]="faUserCircle">
+        </fa-icon>
+      </a>
+    </div>
+  </div>
+</header>

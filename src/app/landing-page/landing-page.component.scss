@@ -1,0 +1,211 @@
+@import './../.././/assets/scss/common.scss';
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+::ng-deep {
+    .landing-page {
+        @media screen and (max-width: 768px) {
+           position: relative;
+           z-index: 0;
+        }
+
+        .categories-header {
+            text-align: center;
+            font-size: 35px;
+            margin: 50px 0px 0px 0px;
+            color: $goldentheme-header-background;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: $goldentheme-headertext-color;
+        }
+        .new-arrival-slide {
+            animation: fadeIn 3s;
+            .video-item {
+                width: 100%;
+                height: 95vh;
+                background: black;
+
+                
+                @media screen and (max-width: 768px) {
+                    height: 35vh;
+                }
+            }
+
+            .carousel-caption {
+                .btn {
+                    @media screen and (max-width: 768px) {
+                        font-size: 12px;
+                    }
+                }
+                @media screen and (max-width: 768px) {
+                    left: -30px;
+                }
+            }
+        }
+
+        .carousel-img {
+            height: 90vh;
+            display: block;
+            width: 100%;
+
+            @media screen and (max-width: 768px) {
+               height: 35vh;
+            }
+        }
+
+        .carousel-caption {
+            position: absolute;
+            width: 100%;
+            top: 405px !important;
+            color: $button-theme-color;
+            max-width: 335px;
+            margin-top: 6px;
+
+            @media screen and (max-width: 768px) {
+                top: 170px!important;
+                left: 0px;
+            }
+
+            @media screen and (min-width: 377px) and(max-width: 400px) {
+                top: 195px!important;
+                left: 0px;
+            }
+
+            @media screen and (min-width: 401px) and(max-width: 420px) {
+                top: 190px!important;
+                left: 0px;
+            }
+
+            @media screen and (max-width: 376px) {
+                top: 158px!important;
+                left: 0px;
+            }
+
+            @media screen and (max-width: 365px) {
+                top: 163px!important;
+                left: 0px;
+            }
+
+            .header-text {
+                font-family: cursive;
+            }
+
+            .header-text-details {
+                font-family: cursive;
+            }
+        }
+
+        .product-percategory-slides {
+            margin-top: 30px !important;
+            margin: auto;
+
+            @media screen and (min-width: 769px){
+                width: 90%;
+            }
+
+            @media screen and (min-width: 1708px) and (max-width: 1950px) {
+                width: 80%;
+            }
+
+            .carousel-indicators {
+                visibility: hidden;
+            }
+
+            .carousel-item {
+                margin-right: inherit !important;
+                padding: 20px 30px 30px 30px;
+
+                @media screen and (max-width: 768px){
+                    padding: 5px;
+                    height: 130px !important;
+                }
+
+                .carousel-caption {
+                    position: absolute;
+                    width: 100%;
+                    max-width: 240px;
+                    top: 166px !important;
+                    width: 71%;
+                    height: 55px;
+                    margin-left: 70px;
+
+                    @media screen and (min-width: 1500px){
+                        margin-left: 45px;
+                    }
+
+                    @media screen and (min-width:993px) and (max-width: 1500px){
+                        margin-left: 36px;
+                    }
+
+                    @media screen and (max-width: 768px){
+                        top: 50px !important;
+                        margin-left: 18px;
+                    }
+
+                    .carousel-text {
+                        padding: 5px;
+                        background: $goldentheme-header-background  !important;
+                        color: $goldentheme-carouseltext-color;
+                        font-size: 0.8em;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        @media screen and (min-width: 769px){
+                            font-size: 2.2em;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100% !important;
+                    margin: auto;
+
+                    @media screen and (min-width: 1200px){
+                       // width: 400px !important;
+                          width: 330px !important;
+                    }
+
+                    @media screen and (max-width: 768px){
+                        height: 120px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .carousel-control-next {
+        z-index: 999 !important;
+    }
+}
+
+.fade {
+    transition: opacity 0.7s ease-in, transform 0.7s ease-out;
+}
+  
+.fadeOut { 
+    opacity: 0;
+    transform: translateY(5vh);
+    @media screen and (max-width: 768px){
+        transform: translateY(1vh);
+    }
+}
+
+.fadeIn { 
+    opacity: 1;
+    transform: none;
+}

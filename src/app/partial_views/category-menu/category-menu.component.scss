@@ -1,0 +1,110 @@
+@import "./../../../assets/scss/variables.scss";
+@import "./../../../assets/scss/common.scss";
+
+.category-menu-container {
+
+    @media screen and (max-width: 768px){
+        border: none !important;
+        height: 57px !important;
+    }
+
+    .categories-header-title {
+        padding: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 1px 1px 4px 1px $box-shadow-color;
+        white-space: pre-wrap;
+
+        @media screen and (min-width: 769px){
+            background: $goldentheme-header-background;
+            color: $goldentheme-headertext-color;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            text-align: center;
+        }
+        @media screen and (max-width: 768px){
+            background-image: none !important;
+            box-shadow: none;
+            height: 57px !important;
+            padding: 15px 20px 18px 10px !important;
+        }
+
+        .accordion-icon {
+            float: right;
+            margin-top: 2px;
+        }
+    }
+
+    .category-list {
+        list-style-type: none;
+        padding-left: 0px;
+        margin-bottom: 0px;
+        background-color: $goldentheme-panel-background;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        li {
+           border-top: solid 1px $goldentheme-header-background;
+           padding: 10px;
+           font-size: 13px;
+           font-weight: bold;
+           color: $goldentheme-header-background;
+
+           .category-icon {
+             width: 30px;
+             height: 30px;
+           }
+
+           .all-icon {
+            font-size: 25px;
+            vertical-align: middle;  
+            color: $goldentheme-headertext-color;
+            vertical-align: sub;
+            display: inline-block;
+           }
+
+           .category-name {
+            margin-left: 15px;
+
+            @media screen and (min-width: 1501px){
+                margin-left: 30px !important;
+            }
+            @media screen and (min-width:993px) and (max-width: 1500px){
+               margin-left: 20px;
+            }
+           }
+
+           @media screen and (max-width: 768px){
+            padding: 12px;
+            font-size: 16px;
+            border-left: none !important;
+           }
+
+           &.active {
+           }
+
+           &:hover {
+           }
+
+        }
+
+        .category-actions-btn {
+            @media screen and (max-width: 768px){
+                float: none!important;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.add-category-btncontainer {
+    margin-bottom: 20px;
+}
+
+.addcategory-mobile-container {
+    @media screen and (max-width: 768px){
+        margin-left: 15px;
+        display: inline!important;
+    }
+}

@@ -1,0 +1,71 @@
+<div class="product-name product-name-link" (click)="openProductDescriptionModal(productDescriptionTemplate)">{{product.productName}}
+</div>
+
+<!-- product description modal  -->
+<ng-template #productDescriptionTemplate>
+    <div class="modal-header">
+        <!-- <h4 class="modal-title pull-left">Product description</h4> -->
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRefProductDescription?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body product-description-modal">
+        <div class="row">
+            <div class="col-md-7 col-xs-12">
+                <div class="carousel-container" *ngIf="this.productImages">
+                    <carousel>
+                        <slide *ngFor="let item of this.productImages;let i=index">
+                            <img src="{{item}}" alt="first slide" style="display: block; width: 100%;">
+                        </slide>
+                    </carousel>
+                </div>
+                <div class="product-image-container" *ngIf="!this.productImages">
+                    <img class="product-image" src="assets/images/herbal-med.jpg" />
+                </div>
+            </div>
+            <div class="col-md-5 col-xs-12">
+                <div class="product-details">
+                    <div class="product-name">{{product.productName}}</div>
+                    <div class="product-description">{{product.description}}</div>
+                    <div class="product-price">
+                        <span class="current-currency-symbol">{{currentCurrency}}</span>
+                        <span class="price-value">{{product.price}}</span>
+                    </div>
+
+                    <div class="row drug-quantity-container"
+                        *ngIf="product.drugQuantity && product.drugQuantity !== 'null'">
+                        <div class="col-12 quantity-title">Drug quantity</div>
+                        <div class="col-12 drug-quantityvalue-container">
+                            <span class="drug-quantity-value">{{product.drugQuantity}}</span>
+                        </div>
+                    </div>
+                    <div class="row quantity-container" *ngIf="product.stock > 0">
+                        <div class="col-12 quantity-title">Quantity</div>
+                        <div class="input-group col-md-4 col-5">
+                            <div class="input-group-prepend">
+                                <button class="input-group-text" (click)="decrementQuantity(product)">-</button>
+                            </div>
+                            <input type="text" class="qty-input form-control" [(ngModel)]='product.quantity' value="1"
+                                id="input1" placeholder="Qty">
+                            <div class="input-group-append">
+                                <button class="input-group-text" [disabled]="(product.quantity >= product.stock)" [attr.title]="(product.quantity >= product.stock) ? sellerStocksEmptyText : '' "  (click)="incrementQuantity(product)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-action-btns row" *ngIf="product.stock > 0">
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-outline add-to-cart add-cart-btn"
+                                (click)="addToCart(product)">Add to
+                                cart</button>
+                            <button class="btn btn-primary btn-outline-customsecondary add-to-cart buy-btn"
+                                (click)="openOrderConfirmationModal(product)" value="1">Buy now</button>
+                        </div>
+                    </div>
+                    <div class="row out-of-stock" *ngIf="product.stock <= 0">
+                        <span class="out-of-stock-text">{{outOfStockText}}</span>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

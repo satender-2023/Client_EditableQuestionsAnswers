@@ -1,0 +1,51 @@
+<section class="sidebar-container">
+    <span id="close-icon-container">
+        <fa-icon [icon]="faTimes" (click)="closeSideBar()" *ngIf="isSideBarOpen"></fa-icon>
+    </span>
+    <div *ngIf="userName" class="col-md-12 header-nav" dropdown>
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle no-padding"
+            aria-controls="dropdown-basic">
+            {{userName}}
+            <span class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem">
+                <a class="dropdown-item" (click)="logOut()" href="javascript:void(0)">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="!userName && !this.loginPage" class="login-link-container col-md-7 col-12 header-nav">
+        <a class="login-link" href="/#/login" (click)="closeSideBar()">
+            Login
+            <fa-icon [icon]="faUserCircle">
+            </fa-icon>
+        </a>
+    </div>
+    <div class="col-md-12 header-nav">
+        <span class="header-links">
+            <a class="nav-links" href="/#/products" (click)="closeSideBar()">
+                Products
+            </a>
+        </span>
+    </div>
+    <div *ngIf="userName" class="col-md-12 header-nav">
+        <span class="header-links">
+            <a class="nav-links" href="/#/carts" (click)="closeSideBar()">
+                Carts
+            </a>
+        </span>
+    </div>
+    <div *ngIf="userName" class="col-md-12 header-nav">
+        <span class="header-links">
+            <a class="nav-links" href="/#/orders" (click)="closeSideBar()">
+                Orders
+            </a>
+        </span>
+    </div>
+    <div class="col-md-12 header-nav">
+        <span class="header-links">
+            <a id="about-us-label" (click)="openAboutusModal()">About Us</a>
+        </span>
+    </div>
+    <app-category-menu *ngIf="isProductListingPage || isAdmin"></app-category-menu>
+</section>

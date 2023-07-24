@@ -1,0 +1,35 @@
+    <!-- add product button -->
+    <button *ngIf="isAdmin" class="btn btn-outline btn-light btn-light-default add-category-btn" (click)="openCategoryModal(addCategoryTemplate)">
+        <!-- <fa-icon class="hand-cursor edit-icon" size="1x" [icon]="faPlus"></fa-icon> -->
+        <span>+</span> 
+        <span class="d-none d-md-block display-inline"> add category</span>
+    </button>
+    <!-- add product modal  -->
+    <ng-template #addCategoryTemplate>
+      <div class="modal-header">
+          <h4 class="modal-title pull-left">Add/Edit Category</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+           <form [formGroup] = "categoryForm" (ngSubmit)="submit(categoryForm.value)">
+                <div class="form-group row">
+                  <label class="col-2 col-form-label" for="categoryName">Name</label> 
+                  <div class="col-8">
+                    <div class="input-group">
+                      <input id="categoryName" name="categoryName" formControlName="categoryName" placeholder="Enter category name" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div> 
+                <div class="form-group row">
+                  <div class="offset-2 col-3">
+                    <button name="submit" type="submit" class="btn btn-outline-modal btn-full-width">Save</button>
+                   </div>  
+                   <div class="col-md-3 col-4">
+                    <button name="submit" type="button" class="btn btn-outline-removebtn btn-full-width" (click)="hideCategoryModal()">Cancel</button>
+                  </div>
+                </div>
+              </form>
+      </div>
+  </ng-template>

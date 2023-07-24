@@ -1,0 +1,90 @@
+<div class="confirm-order-modal">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm order details</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <fieldset class="fieldset-container border p-2">
+            <legend class="legend-title w-auto">Order Summary:</legend>
+            <div class="user-details order-details">
+                <div class="form-group row">
+                    <label class="col-5 col-form-label" for="categoryName">Price </label>
+                    <div class="col-7">
+                        <label class="col-form-label" for="categoryName">{{product.price}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-5 col-form-label" for="categoryName">Delivery Charges</label>
+                    <div class="col-7">
+                        <label class="col-form-label" for="categoryName">Delivery charges extra, free delivery only on orders above <span class="current-currency-symbol">{{currentCurrency}}</span> 1000/-
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-5 col-form-label order-total-text" for="categoryName">Order Total</label>
+                    <div class="col-7">
+                        <label class="col-form-label product-final-price" for="categoryName">
+                            <span class="current-currency-symbol">{{currentCurrency}}</span>
+                            {{product.price}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <fieldset class="fieldset-container border p-2">
+            <legend class="legend-title w-auto">User Details:</legend>
+            <div class="user-details">
+                <fa-icon *ngIf="editMode" class="hand-cursor fa-icon check-icon" [icon]="faCheckSquare"
+                    (click)="setEditMode(false)"></fa-icon>
+                <fa-icon *ngIf="!editMode" class="hand-cursor fa-icon edit-icon" [icon]="faEdit"
+                    (click)="setEditMode(true)"></fa-icon>
+                <div class="form-group row">
+                    <label class="col-5 col-form-label" for="categoryName">User Name</label>
+                    <div class="col-7">
+                        <label class="col-form-label" for="categoryName">{{product.userName}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-5 col-form-label" for="categoryName">User Address</label>
+                    <div class="col-7">
+                        <label *ngIf="!editMode" class="col-form-label"
+                            for="categoryName">{{product.userAddress}}</label>
+                        <input *ngIf="editMode" id="userAddress" name="userAddress"
+                            [(ngModel)]="editedProduct.userAddress" placeholder="Enter user address" type="text"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-5 col-form-label" for="categoryName">User Contact No.</label>
+                    <div class="col-7">
+                        <label *ngIf="!editMode" class="col-form-label"
+                            for="categoryName">{{product.userPhoneNumber}}</label>
+                        <input *ngIf="editMode" id="userPhoneNumber" [(ngModel)]="editedProduct.userPhoneNumber"
+                            name="userPhoneNumber" placeholder="Enter user contact No." type="text"
+                            class="form-control">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row note-container">
+            <div class="col-12">
+                <span class="note-label">Note: </span>
+                <span class="note-text">Only cash on delivery is supported</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-1 offset-md-2 col-md-4 col-6">
+                <button name="submit" type="submit" class="btn btn-outline-modal btn-full-width"
+                    (click)="save()">Confirm Order</button>
+            </div>
+            <div class="col-md-3 col-4">
+                <button name="submit" type="button" class="btn btn-outline-removebtn btn-full-width"
+                    (click)="modalRef?.hide()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

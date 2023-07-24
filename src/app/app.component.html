@@ -1,0 +1,42 @@
+<div class="amazing-js-container">
+    <app-loader></app-loader>
+    <app-header  (sidebarStatus) = "openOrCloseSidebar($event)" (openAboutUs) = "openModal(template)"></app-header>
+    <div class = "sidebar-background" [ngClass] = "{'sidebar-background-hidden': !sideBarOpen}">
+        <app-sidebar 
+        [isSideBarOpen] = "sideBarOpen" 
+        (sidebarStatus) = "openOrCloseSidebar($event)" 
+        (openAboutUs) = "openModal(template)" 
+        class = "sider-bar"
+        [ngClass] ="{'sider-bar-initially-closed':isSideBarUntouched,'sidebar-closed':!sideBarOpen && !isSideBarUntouched,'sidebar-open':sideBarOpen}"
+        >
+        </app-sidebar>
+    </div>
+    <div class="router-outlet-container" [ngClass] ="{'landing-page': isLandingPage}">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+
+    <!-- about us modal -->
+    <ng-template #template class="about-us-modal">
+        <div class="modal-header about-us-header">
+            <h4 class="modal-title pull-left">About us</h4>
+            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body about-us-body">
+            <p>
+                Discover the Beauty of Rasashastra with RASAHRIDAY. We specialize in creating products exactly as per the Samhitas!!
+            </p>
+            <p>
+                At RASAHRIDAY, we use Ashta-Sanskarit Parada and self-made Bhasmas created using cow dung cakes and Traditional Bhattis, to create the purest and most potent Rasaushadhis.
+                Our Kupipakwa Rasayanas are prepared in Specialized Valuka-Yantras with the exact amount of Kramagni mentioned in the Rasagranthas, ensuring the highest efficacy and potency.
+            </p>
+            <p>
+                RASAHRIDAY is run by Vaidyas, for Vaidyas.
+            </p>
+            <p>Join us to witness the power of Traditional Ayurvedic Aushadhis, prepared with the unrelenting pursuit of perfection!!</p>
+        </div>
+    </ng-template>
+</div>
+<notifier-container></notifier-container>

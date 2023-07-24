@@ -1,0 +1,32 @@
+<div class="add-category-btncontainer d-none d-md-block">
+    <!-- add category modal -->
+    <app-add-category class="add-category-container" [editMode]="editMode"></app-add-category>
+</div>
+<div class="category-menu-container">
+    <div class="categories-header-title">Category 
+        <app-add-category class="d-block d-sm-none addcategory-mobile-container" [editMode]="editMode"></app-add-category>
+        <fa-icon *ngIf="!isCategoryOpen" class="d-block d-sm-none hand-cursor accordion-icon" [icon]="faChevronDown" (click)="toggleCustomAccordion()">
+        </fa-icon>
+        <fa-icon *ngIf="isCategoryOpen" class="d-block d-sm-none hand-cursor accordion-icon" [icon]="faChevronUp" (click)="toggleCustomAccordion()">
+        </fa-icon>
+    </div>
+    <ul class="category-list" *ngIf="!isMobile || isCategoryOpen">
+        <li class="product-item" [ngClass]="{'active': isAllCategoryActive == true}" (click)="allCategorySelected()">
+            <fa-icon class="all-icon category-icon" [icon]="faGlobe"></fa-icon>
+            <span class="hand-cursor category-name">
+                {{allCategoryText}}
+            </span>
+        </li>
+        <li class="product-item" [ngClass]="{'active': i == activeIndex}" *ngFor="let category of categories; let i=index" (click)="onCategorySelected($event, category,i)">
+            <img class="category-icon" onerror="this.onerror=null; this.src='./../../../assets/images/khalviya.png'" src="./../../../assets/images/{{category.categoryName | lowercase}}.png">
+            <span class="{{category.categoryName | lowercase}}"></span>
+            <span class="hand-cursor category-name">{{category.categoryName}}</span>
+            <span class="float-right category-actions-btn" *ngIf="this.isAdmin">
+                <fa-icon class="hand-cursor edit-icon" [icon]="faEdit" (click)="editCategory(category)">
+                </fa-icon>
+                <fa-icon class="hand-cursor delete-icon" [icon]="faTrash" (click)="deleteCategory(category._id)">
+                </fa-icon>
+            </span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,199 @@
+@import "./../../../../assets/scss/common.scss";
+
+%carouse-container-dimensions {
+    height: 450px;
+    width: 500px;
+
+    @media screen and (max-width: 768px) {
+       height: 320px;
+       width: 100%;
+    }
+}
+
+%img-dimensions {
+    height: 430px;
+    width: 480px;
+
+    @media screen and (max-width: 768px) {
+      height: 300px;
+      width: 100%;
+   }
+}
+
+%action-btn-size {
+    font-size: 18px !important;
+    padding: 5px 10px !important;
+}
+
+.product-name-link {
+  display: inline-block;
+  width: calc(100% - 20px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0;
+}
+
+.product-description-modal {
+    .product-image-container {
+        text-align: center;
+        height: 450px;
+        width: 500px;
+        padding: 5px 20px !important;
+        .product-image {
+          height: 430px;
+          width: 100%;
+          border-top-left-radius: $goldentheme-border-radius;
+          border-top-right-radius: $goldentheme-border-radius;
+          border-bottom-left-radius: $goldentheme-border-radius;
+          border-bottom-right-radius: $goldentheme-border-radius;
+        }
+    }
+    
+    .product-name {
+        font-weight: bold;
+    }
+    
+    .table {
+        margin-top: 8px;
+    }
+    
+    .modal-header,
+    .modal-body {
+        font-family: 'Arial';
+    }
+    
+    .product-img-container {
+        width: 100%;
+    }
+    
+    .product-details {
+       .product-name {
+        color: $goldentheme-headertext-color;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: capitalize;
+        cursor: pointer;
+      }
+      .product-description {
+        font-size: 16px;
+        color: $goldentheme-header-background !important;
+      }
+
+      .product-price {
+        margin-top: 20px;
+
+        .current-currency-symbol {
+            top: -12.25px;
+            font-size: 12px;
+            padding-right: 2px;
+        }
+
+        .price-value {
+            font-size: 30px;
+        }
+      }
+
+      .drug-quantity-container {
+        margin-top: 20px;
+        font-family: sans-serif;
+
+        .drug-quantityvalue-container {
+            margin-top: 10px;
+
+            .drug-quantity-value {
+                background: $goldentheme-header-background;
+                color: $goldentheme-badge-text;
+                padding: 6px 12px 6px 12px;
+                border-radius: 20px;
+            }
+        }
+      }
+
+      .quantity-container {
+        margin-top: 20px;
+
+        .qty-input {
+          padding: 0px !important;
+          text-align: center;
+          background-color: $goldentheme-panel-background;
+          border: solid 1px $goldentheme-header-background;
+        }
+
+        .input-group-text {
+            width: 35px;
+            cursor: pointer;
+            background-color: $goldentheme-header-background;
+            color: $goldentheme-headertext-color;
+            border: solid 1px $goldentheme-header-background;
+        }
+
+        .quantity-title {
+            font-family: sans-serif;
+            font-size: 16px;
+            margin-bottom: 10px;
+          }
+      }
+
+      .user-action-btns {
+        margin-top:30px;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 768px) {
+          margin-bottom: 10px;
+        }
+
+        .buy-btn {
+          margin-right: 5px;
+          @extend %action-btn-size;
+        }
+        .add-cart-btn {
+          margin-right: 5px;
+          @extend %action-btn-size;
+        }
+      }
+    }
+    
+    .product-img {
+        height: 200px;
+        width: 200px;
+        border: solid 1px gainsboro;
+        margin: auto;
+        display: block;
+    }
+
+    .out-of-stock {
+      margin-top: 30px;  
+      margin-left: 0px;
+      .out-of-stock-text {
+        margin: initial !important;
+        padding: 10px 15px !important; 
+      }
+    }
+
+}
+
+
+::ng-deep {
+    .product-description-modalcontainer {
+        &.modal-dialog {
+            max-width: 1000px;
+
+            .modal-body {
+                padding: 15px 15px 5px 15px !important;
+            }
+
+            .carousel-container {
+                @extend %carouse-container-dimensions;
+                padding: 5px 20px !important;
+                img {
+                    @extend %img-dimensions;
+                    border-top-left-radius: $goldentheme-border-radius;
+                    border-top-right-radius: $goldentheme-border-radius;
+                    border-bottom-left-radius: $goldentheme-border-radius;
+                    border-bottom-right-radius: $goldentheme-border-radius;
+                }
+            }
+        }
+    }
+}

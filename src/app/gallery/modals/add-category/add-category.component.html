@@ -1,0 +1,30 @@
+<div class="confirm-order-modal">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Category</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 col-4 form-label">
+                    <p>Title</p>
+                </div>
+                <div class="col-md-9 col-8">
+                    <input type="text" class="form-control form-input" placeholder="Enter Category name">
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="row choose-btn">
+                <div class="offset-md-1 col-md-5 col-6">
+                    <button type="button" class="btn btn-light btn-add photo-btn">Save</button>
+                </div>
+                <div class="col-md-4 col-6">
+                    <button type="button" class="btn btn-light btn-cancel photo-btn" (click)="modalRef?.hide()">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+@import "./../../../../assets/scss/common.scss";
+
+%section-styles {
+    padding: 5px;
+}
+
+::ng-deep {
+   .order-confirmation { 
+    @media screen and (min-width: 769px) {
+       max-width: 600px;
+    }
+    .confirm-order-modal {
+        .fieldset-container {
+            &.border {
+                border-color: $goldentheme-confirmmodal-bordercolor !important;
+            }
+        }
+        .product-details {
+            position: relative;
+            @extend %section-styles;
+            .form-group {
+                margin-bottom: 10px;
+            }
+        }
+
+        .user-details {
+            position: relative;
+            @extend %section-styles;
+            .form-group {
+                margin-bottom: 8px;
+            }
+        }
+
+        .fa-icon {
+            position: absolute;
+            margin-top: -26px;
+            right: 0;
+        }
+        .check-icon {
+            color: green;
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+        .order-details {
+            .order-total-text {
+                font-weight: 600;
+            }
+            .product-final-price {
+                background-color: $goldentheme-headertext-color !important;
+                color: $goldentheme-badge-text !important;
+                border-radius: 20px;
+                padding: 5px 10px;
+            }
+        }
+        .note-container {
+            margin-bottom: 20px;
+        }
+    }
+   }
+
+    .legend-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .fieldset-container {
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,203 @@
+@import "./../../../assets/scss/common.scss";
+
+.page-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 1px 1px 4px 1px $goldentheme-background-img  !important;
+
+    .search-input {
+        border-radius: 1.25em !important;
+        background-clip: unset !important;
+        border: none;
+    }
+    @media screen and (max-width: 768px) {
+        position: static !important;
+    }
+    @media screen and (min-width: 769px) {
+        height: 60px !important;
+    }
+}
+
+.question-type {
+    min-height: 30px;
+}
+
+#social-address-links {
+    list-style: none;
+    padding-left: 0;
+    display: inline;
+}
+
+.social-link-item:nth-child(2) {
+    margin-left: 20px;
+}
+
+.social-link-item {
+    display: inline-block;
+}
+
+#about-us-and-social-links {
+    padding-left: 10%;
+}
+
+#follow-us-container {
+    display: inline-block;
+    margin-left: 20px;
+    border: 1px solid lightgrey;
+    padding: 4px 10px;
+    border-radius: 11px;
+}
+
+#about-us-label {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#about-us-label:hover {
+    text-decoration: underline;
+}
+
+#menubars {
+    display: none;
+}
+
+.header-nav {
+
+    @media screen and (min-width:993px) and (max-width: 1500px) {
+        flex-basis: 33% !important;
+        max-width: 33% !important;    
+    }
+    .header-links {
+        margin-right: 15px;
+
+        &:hover {
+            color: $goldentheme-product-hover !important
+        }
+
+        .nav-links {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    .badge-light {
+        background-color: $goldentheme-headertext-color !important;
+        color: $goldentheme-badge-text !important;
+        vertical-align: top;
+        margin-top: -5px;
+        border-radius: 20px;
+    }
+}
+
+.searchbox-container {
+    .search-btn {
+        height: 35px !important;
+        color: $goldentheme-headertext-color;
+        border: solid 1px $goldentheme-headertext-color;
+        border-radius: $goldentheme-border-radius;
+
+        @media screen and (min-width:993px) and (max-width: 1500px) {
+           flex-basis: 20% !important;
+           max-width: 20% !important;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        padding-left: 0px;
+    }
+}
+
+.login-link-container {
+    @media screen and (min-width: 993px) and (max-width: 1500px) {
+        flex-basis: 52% !important;
+        max-width: 52% !important;
+    }
+    
+    .login-link {
+        color: inherit !important;
+        text-decoration: none;
+
+        @media screen and (min-width: 768px) {
+            float: right;
+        }
+
+        &:hover {
+            color: $product-hover-border  !important;
+        }
+    }
+}
+
+.loggedin-user {
+    @media screen and (min-width:993px) and (max-width: 1500px) {
+       margin-left: 6% !important;
+    }
+    button {
+        color: $goldentheme-headertext-color;
+    }
+    &:hover {
+        color: $product-hover-border  !important;
+    }
+}
+
+.hidden {
+    @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+.project-text {
+    .logo-text {
+        color: $goldentheme-headertext-color;
+
+        @media screen and (max-width: 768px) {
+          font-family: sans-serif;
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1500px) {
+           font-size: 15px !important;
+        }
+    }
+}
+
+.cart-menubar-container {
+    a {
+        &.nav-links {
+            margin-left: 10px;
+            @media screen and (max-width: 365px) {
+               margin-left: 0px !important;
+            }
+        }
+    }
+    .badge-light {
+        font-size: 12px;
+
+        @media screen and (max-width: 768px) {
+          font-family: sans-serif;
+        }
+    }
+}
+
+
+.cart-icon {
+  color: $goldentheme-headertext-color !important; 
+}
+
+@media screen and (max-width: 768px) {
+
+    #about-us-and-social-links {
+        display: none;
+    }
+
+    #menubars {
+        display: inline;
+        float: right;
+        font-size: 1.2em;
+        margin-top: 5px;
+
+        .menu-bar-icon {
+            float: right;
+        }
+    }
+
+}

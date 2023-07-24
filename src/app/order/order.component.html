@@ -1,0 +1,79 @@
+<h2 class="page-heading">Your orders</h2>
+<alert *ngIf="showOrderDeliveryNotification" class="order-page-info" type="info" [dismissible]="true" (onClosed)="onClosed()">
+    Once confirmed! <strong>Your Order</strong> will be delivered within 2 week from the order placed date.
+</alert>
+<div class="cart-container">
+    <div class="row product-item" *ngFor="let orderedItem of orderList">
+        <div class="col-md-5 col-12">
+            <div class="carousel-container" *ngIf="orderedItem.productImagesToBeShown">
+                <carousel>
+                    <slide *ngFor="let item of orderedItem.productImagesToBeShown;let i=index">
+                        <img class="product-img" src='{{item}}' style="display: block; width: 100%;">
+                    </slide>
+                </carousel>
+            </div>
+            <!-- <div class="form-group product-img-container row" *ngIf="orderedItem.productImagesToBeShown">
+                <div class="col-4 product-images" *ngFor="let item of orderedItem.productImagesToBeShown;let i=index">
+                    <img class="product-img" src='{{item}}' />
+                </div>
+            </div> -->
+            <div class="product-img-container default-img-container" *ngIf="!orderedItem.productImagesToBeShown">
+                <img class="product-img" src="assets/images/herbal-med.jpg" />
+            </div>
+        </div>
+        <div class="col-md-7 col-12">
+            <div class="product-name">{{orderedItem.productName}}</div>
+            <!-- <div class="product-description">{{orderedItem.description}}</div> -->
+            <div class="product-ordered-datecontainer">
+                <span class="ordered-date-title">Order placed on: </span>
+                <span class="ordered-date">{{getFormattedOrderDate(orderedItem.orderedDate)}}</span>
+            </div>
+            <div class="product-price">
+                <span class="total-text">Total: </span>
+                <span class="current-currency-symbol">{{currentCurrency}}</span>
+                <span class="price-value">{{orderedItem.quantity * orderedItem.price}}</span>
+            </div>
+            <div class="quantity-readonly-container">
+                <span class="quantity-text">Quantity : </span>
+                <span class="quantity-value">{{orderedItem.quantity}}</span>
+            </div>
+            <div class="order-progress-container" *ngIf="!userDetails.isAdmin">
+                <div class="order-progress" *ngIf="!orderedItem.orderAccepted">
+                    <fa-icon class="hand-cursor fa-icon clock-icon" [icon]="faClock">
+                    </fa-icon>
+                    Pending confirmation
+                </div>
+            </div>
+            <div class="order-accepted" *ngIf="orderedItem.orderAccepted">
+                <fa-icon class="hand-cursor fa-icon check-icon" [icon]="faCheckSquare">
+                </fa-icon>
+                Order Accepted
+            </div>
+            <div class="col-md-8 col-xs-12 user-details" *ngIf="userDetails.isAdmin">
+                    <div class="user-name">
+                        <span>user name: </span>
+                        <span>{{orderedItem.userName}}</span>
+                    </div>
+                    <div class="user-contact">
+                        <span>user contact: </span>
+                        <a class="phone-number" href="tel:+91-{{orderedItem.userPhoneNumber}}">+91-{{orderedItem.userPhoneNumber}}</a>
+                    </div>
+                    <div class="user-address">
+                        <span>user address: </span>
+                        <span>{{orderedItem.userAddress}}</span>
+                    </div>
+            </div>
+            <div class="cart-item-actionbtns" *ngIf="userDetails.isAdmin">
+                <button *ngIf="!orderedItem.orderAccepted" class="btn btn-outline place-order-btn"
+                    (click)="acceptOrder(orderedItem)">Accept order</button>
+                <button class="btn btn-outline-removebtn place-order-btn remove-btn" (click)="deleteOrder(orderedItem)">
+                    <fa-icon class="hand-cursor delete-icon-cartorder" [icon]="faTrash"></fa-icon>
+                    remove
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="empty-data" *ngIf="orderList && orderList.length==0">
+        Order list is empty
+    </div>
+</div>

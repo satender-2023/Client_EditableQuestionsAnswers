@@ -1,0 +1,82 @@
+<div class="pyro" *ngIf="isFireCrackerShown">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
+<h2 class="page-heading">Products</h2>
+<div class="product-page-container">
+    <div class="row">
+        <!-- <div class="col-md-12 col-xs-12 col-12"> -->
+        <div class="col-md-2 col-4 d-none d-md-block">
+            <app-category-menu></app-category-menu>
+        </div>
+        <div class="col-md-10 col-12 product-list-container">
+            <div class="row">
+                <div class="col-md-3 addproduct-btn-container">
+                    <!-- add product modal -->
+                    <app-add-product class="add-product-container" [editMode]="editMode"
+                        (productAddEvent)="receiveProductAddEvent($event)"></app-add-product>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-3 col-sm-12 col-xs-12 col-12 product-list-item-container"
+                    *ngFor="let product of products">
+                    <div class="product-list-item">
+
+                        <div class="product-img-container">
+                            <img *ngIf="product.productImages && product.productImages[0]" class="product-img"
+                                src='{{getProductImageToBeShown(product.productImages)}}' />
+                            <img *ngIf="!(product.productImages && product.productImages[0])" class="product-img"
+                                src="./../../../assets/images/herbal-med.jpg" />
+                        </div>
+                        <div class="img-details-container">
+                            <div class="product-name">
+                                <!-- product description modal -->
+                                <app-product-description [product]=product></app-product-description>
+                            </div>
+                            <div class="product-description">{{product.description}}</div>
+                            <div class="product-price">
+                                <span class="current-currency-symbol">{{currentCurrency}}</span>
+                                <span class="price-value">{{product.price}}</span>
+                            </div>
+                            <div class="user-action-btns row" *ngIf="product.stock > 0">
+                                <div class="input-group col-md-5 col-4">
+                                    <div class="input-group-prepend">
+                                        <button class="input-group-text" (click)="decrementQuantity(product)">-</button>
+                                    </div>
+                                    <input type="text" class="qty-input form-control" [(ngModel)]='product.quantity'
+                                        value="1" id="input1" placeholder="Qty">
+                                    <div class="input-group-append">
+                                        <button class="input-group-text" [disabled]="(product.quantity >= product.stock)" [attr.title]="(product.quantity >= product.stock) ? sellerStocksEmptyText : '' "  (click)="incrementQuantity(product)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row cart-buy-btncontainer" *ngIf="product.stock > 0">
+                                <button class="col-5 btn btn-outline add-to-cart add-cart-btn"
+                                (click)="addToCart(product)">
+                                Add to cart
+                            </button>
+                            <button class="col-6 btn btn-outline-customsecondary add-to-cart buy-btn"
+                                (click)="openOrderConfirmationModal(product)" value="1">Buy now</button>
+                            </div> 
+                            <div class="row out-of-stock" *ngIf="product.stock <= 0">
+                                 <span class="out-of-stock-text">{{outOfStockText}}</span>
+                            </div>
+                            <div class="admin-btn">
+                                <span class="edit-delete-btncontainer" *ngIf="isAdmin">
+                                    <fa-icon class="hand-cursor edit-icon" [icon]="faEdit"
+                                        (click)="editProduct(product)">
+                                    </fa-icon>
+                                    <fa-icon class="hand-cursor delete-icon" [icon]="faTrash"
+                                        (click)="deleteProduct(product)">
+                                    </fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>

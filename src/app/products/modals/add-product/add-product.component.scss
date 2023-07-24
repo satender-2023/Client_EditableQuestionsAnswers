@@ -1,0 +1,77 @@
+@import "./../../../../assets/scss/common.scss";
+
+label {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+form .ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+}
+
+.add-product-form {
+    margin: 15px;
+}
+
+.modal-dialog-container {
+    &.modal-dialog {
+        max-width: 800px;
+    }
+}
+
+.product-img {
+    height: 200px;
+    width: 200px;
+    border: solid 1px gainsboro;
+    margin: auto;
+    display: block;
+}
+
+.custom-upload-btn {
+    display: inline-block;
+    background-color: $goldentheme-header-background;
+    color: $goldentheme-headertext-color;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+
+    &:active {
+        background-color: $goldentheme-header-background !important;
+        color: $goldentheme-headertext-color !important;
+    }
+}
+
+.file-upload {
+    margin-top: -5px;
+    position: absolute;
+    margin-left: -88px;
+    opacity: 0;
+}
+
+.product-img-container {
+    .img-container {
+        @media screen and (max-width: 768px) {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.form-group {
+    .mobile-field {
+
+        &:first-child {
+            @media screen and (max-width: 768px) {
+                margin-bottom: 16px;
+            }
+        }
+    }
+}

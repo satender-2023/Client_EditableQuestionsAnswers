@@ -1,0 +1,279 @@
+@import "./../../../assets/scss/common.scss";
+@import "./../../../assets/scss/variables.scss";
+
+.blog-row {
+    display: flex;
+    justify-content: center;
+
+    .blog-container {
+        width: 80%;
+    }
+
+    .blog-heading {
+        text-align: center;
+        font-family: cursive;
+        margin-bottom: 15px;
+        color: $goldentheme-header-background;
+        padding-bottom: 15px;
+    }
+
+    .dragitem {
+        width: 100%;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        cursor: move;
+    }
+
+    .dragitem:hover {
+        box-shadow: 0 0 2px 1px #313e24;
+    }
+
+    .main-blog-container {
+        // padding-right: 10px;
+    }
+
+    .recent-blog-container {
+        // padding-left: 10px; 
+    }
+
+    .tableOfContent {
+        font-family: cursive;
+        margin-bottom: 15px;
+        color: $goldentheme-header-background;
+        border-bottom: 1px solid #8080806b;
+        padding-bottom: 15px;
+        margin: 0;
+        padding-left: 12px;
+    }
+
+    ul {
+        padding: 10px 17px;
+    }
+
+    a.navigation__link {
+        text-decoration: none;
+        color: $goldentheme-productdescription-color;
+        font-size: 16px;
+        font-weight: 700;
+        opacity: 0.6;
+    }
+
+    .recentBlogsImg {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+    }
+
+    .recentBlogsImg:hover {
+        box-shadow: 0 0 2px 1px #313e24;
+    }
+
+    .recentBlogs {
+        display: flex;
+        flex-direction: row;
+        padding-top: 10px;
+        border-bottom: 1px solid #8080806b;
+        padding-bottom: 15px;
+
+    }
+
+    .short-desc {
+        padding-top: 10px;
+        color: $copyright-footer;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .short-desc-readMore {
+        text-decoration: none;
+        color: $goldentheme-header-background;
+        font-family: cursive;
+    }
+
+    .blog_CC {
+        padding: 10px 0px 0px 0px;
+        color: $product-name-color;
+        font-size: 16px;
+        font-family: nunito-light, Open Sans, sans-serif;
+    }
+
+    .blog-title-name {
+        font-size: 16px;
+        font-weight: 700;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    .blog_update_date {
+        font-weight: 600;
+    }
+
+    .Comprehensive-Guide,
+    .Significance {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 0px;
+        color: $goldentheme-header-background;
+        border-bottom: 1px solid #8080806b;
+    }
+
+    .Comprehensive-Guide-cc,
+    .Significance-cc {
+        color: #333 !important;
+        line-height: 1.6;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: justify;
+        margin-bottom: 20px;
+        margin-top: 10px;
+
+    }
+
+    .blog_post_first_image {
+        width: 100%;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+    }
+
+    .blog_post_first_image:hover {
+        box-shadow: 0 0 2px 1px #313e24;
+    }
+
+    .Benifits-li-heading {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 0px;
+        color: $goldentheme-header-background;
+
+    }
+
+    .Rasahriday-products {
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 0px;
+        color: $goldentheme-header-background;
+    }
+
+    .Rasahriday-products a {
+        color: $goldentheme-header-background;
+    }
+
+    .Rasahriday-products-img {
+        width: 100%;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+    }
+
+    .Rasahriday-products-img:hover {
+        box-shadow: 0 0 2px 1px #313e24;
+    }
+
+}
+
+/* drag-and-drop.component.css */
+.blog-row.dropzone {
+    // width: 100%;
+    // height: auto;
+    // border: 2px dashed black;
+    // padding: 20px 5px 20px 5px;
+    //  margin-top: 20px;
+}
+
+// choose photos
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .form-label1 {
+        padding-left: 1.9rem;
+        font-size: inherit;
+    }
+
+    .form-label {
+        padding-left: 1.9rem;
+        font-size: inherit;
+        padding-top: calc(0.375rem + 1px);
+        padding-bottom: calc(0.375rem + 1px);
+    }
+
+    .form-input {
+        width: 88%;
+        border-radius: 0.25rem;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: #fff;
+        background-clip: padding-box;
+
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        display: inline-block;
+        background-color: #313e24;
+        color: #ad974f;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+    }
+
+    .photo-btn {
+        font-weight: 700;
+        letter-spacing: .05em;
+        border-radius: 20px;
+        padding: 3px 10px !important;
+        cursor: pointer;
+        width: 9rem;
+
+    }
+
+    .btn-add {
+
+        color: #313e24;
+        background-color: #e3dfce;
+        border-color: #313e24;
+    }
+
+    .btn-cancel {
+
+        color: #ad974f;
+        background-color: #313e24;
+        border-color: #ad974f;
+    }
+
+    .chooseImg {
+        width: 100%;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        cursor: move;
+    }
+    .chooseImg :hover {
+        box-shadow: 0 0 2px 1px #313e24;
+    }
+   
+}
+.form-group.addPhoto-container{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.edit-delete-btncontainer {
+    vertical-align: sub !important;
+}

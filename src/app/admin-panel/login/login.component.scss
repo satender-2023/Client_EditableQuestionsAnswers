@@ -1,0 +1,51 @@
+@import "./../../../assets/scss/common.scss";
+
+$goldenthemellogin-borderradius: 10px !important;
+
+.switch-mode {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-modal {
+    padding: 5px 8px !important;
+}
+
+.arrowright-icon {
+    font-size: 12px;
+}
+
+.login-panel-container {
+    border-bottom-left-radius: $goldentheme-border-radius;
+    border-bottom-right-radius: $goldentheme-border-radius;
+    border-top-left-radius: $goldentheme-border-radius;
+    border-top-right-radius: $goldentheme-border-radius;
+    .login-register {
+        background-color: $goldentheme-header-background;
+        color: $goldentheme-headertext-color;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-top-left-radius: $goldentheme-border-radius;
+        border-top-right-radius: $goldentheme-border-radius;
+    }
+
+    .field-container {
+        padding: 8px 20px;
+    }
+
+    .action-btns {
+        .login-btn {
+            margin-left: 10px;
+        }
+
+        .btn {
+            border-radius: $goldenthemellogin-borderradius;
+        }
+
+        .submit-btn {
+            padding-top: 4px !important;
+            padding-bottom: 4px !important;
+        }
+    }
+
+}

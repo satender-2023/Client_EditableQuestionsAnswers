@@ -1,0 +1,553 @@
+@import "./variables.scss";
+
+$img-path: '~src/assets/images/';
+
+%quantitybtn-left-borderradius {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+%quantitybtn-right-borderradius {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.btn-full-width {
+  width: 100% !important;
+}
+
+.edit-icon {
+  margin-right: 5px;
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 15px;
+  }
+}
+
+.delete-icon {
+  color: $delete-icon-color;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.no-padding-left {
+  padding-left: 0px !important;
+}
+
+.no-padding-right {
+  padding-right: 0px !important;
+}
+
+.empty-data {
+  text-align: center;
+}
+
+.default-img-container {
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.cart-container {
+  width: 64%;
+  margin: auto;
+  padding: 10px;
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+  }
+
+  .product-ordered-datecontainer {
+     margin-bottom: 10px;
+    .ordered-date {
+      background-color: $goldentheme-headertext-color !important;
+      color: $goldentheme-badge-text !important;
+      border-radius: $goldentheme-border-radius;
+      padding: 5px;
+    }
+  }
+  
+  .product-item {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    box-shadow: 0px 0px 2px 2px $box-shadow-color;
+    background: $goldentheme-panel-background;
+    border-radius: 20px;
+
+    .user-details {
+      color: $goldentheme-header-background !important;
+      border: solid 1px $goldentheme-headertext-color;
+      border-radius: 15px;
+      padding: 5px;
+      margin-bottom: 10px;
+      font-weight: bold;
+
+      .phone-number {
+        color: $phonenumber-link-color !important;
+      }
+    }
+
+    @media only screen and (max-width: 768px) { 
+      height: 100%;
+    }
+  }
+
+  .product-img-container {
+    margin-bottom: 10px;
+    display: flex;
+
+    .product-images {
+      display: flex;
+      margin: auto;
+      max-width: 100%;
+    }
+
+    .product-img {
+      margin: auto;
+    }
+  }
+
+  .product-img {
+    height: 250px;
+    width: 100%;
+    border: solid 1px $container-border-color;
+    margin: auto auto 15px auto;
+    display: block;
+    border-top-right-radius: $goldentheme-border-radius;
+    border-top-left-radius: $goldentheme-border-radius;
+    border-bottom-right-radius: $goldentheme-border-radius;
+    border-bottom-left-radius: $goldentheme-border-radius;
+    
+  }
+
+  .add-to-cart {
+    float: right;
+  }
+
+  .cart-item-actionbtns {
+     margin-top: 15px;
+     margin-bottom: 15px;
+  }
+
+  .product-name {
+    color: $goldentheme-headertext-color;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+
+  .product-description {
+    color: $product-description-color !important;
+    display: inline-block;
+    width: calc(100% - 30px);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .drug-quantity-container {
+    margin-bottom: 10px;
+    font-family: sans-serif;
+
+    .drug-quantity-title {
+      margin-bottom: 5px;
+      color: $goldentheme-header-background;
+    }
+  
+    .drug-quantityvalue-container {
+        margin-bottom: 10px;
+        
+        .drug-quantity-value {
+            background: $goldentheme-header-background;
+            color: $btn-outline-textcolor;
+            padding: 6px 12px 6px 12px;
+            border-radius: 20px;
+        }
+    }
+  }
+  
+  .quantity-container {
+    margin-bottom: 10px;
+  
+    .qty-input {
+      text-align: center;
+      background: $goldentheme-panel-background;
+      border-color: $goldentheme-header-background;
+    }
+
+    .quantity-fields-container {
+       @media screen and (min-width:993px) and (max-width: 1500px) {
+          flex-basis: 32% !important;
+          max-width: 32% !important;
+       }
+    }
+
+  
+    .input-group-text {
+        width: 35px;
+        cursor: pointer;
+        background: $goldentheme-header-background;
+        color: $goldentheme-headertext-color;
+        border: solid 1px $goldentheme-header-background;
+    }
+  
+    .quantity-title {
+        font-family: sans-serif;
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: $goldentheme-header-background;
+      }
+  }
+
+  .quantity-readonly-container {
+    .quantity-value {
+      background-color: $goldentheme-headertext-color;
+      color: $goldentheme-badge-text;
+    }
+    .quantity-text {
+      color: $goldentheme-header-background;
+      font-weight: bold;
+    }
+  }
+
+  .btn-outline {
+    margin-right: 5px;
+  }
+}
+
+.input-group-prepend {
+  .input-group-text {
+      @extend %quantitybtn-left-borderradius;
+  }
+}
+.input-group-append {
+    .input-group-text {
+        @extend %quantitybtn-right-borderradius;
+    }
+}
+
+.product-price {
+  margin-bottom: 10px;
+
+  .current-currency-symbol {
+    top: -4.25px;
+    font-size: 11px;
+    position: relative;
+  }
+  .price-value {
+     font-size: 18px;
+     font-family: cursive;
+
+     @media only screen and (max-width: 768px) {
+      font-family: sans-serif;
+    }
+  }
+}
+
+.btn-outline {
+  color: $goldentheme-header-background;
+  background-color: $goldentheme-panel-background;
+  border-color: $goldentheme-header-background;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  padding: 3px 10px !important;
+  cursor: pointer;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: $goldentheme-header-background;
+    background-color: $goldentheme-panel-background;
+    border-color: $goldentheme-header-background;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn-outline-customsecondary {
+  color: $goldentheme-headertext-color;
+  background-color: $goldentheme-header-background;
+  border-color: $goldentheme-headertext-color;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  padding: 3px 10px !important;
+  box-shadow: 2px 2px $box-shadow-color;
+  cursor: pointer;
+  
+  &:active,
+  &:hover,
+  &:focus {
+    color: $goldentheme-headertext-color;
+    background-color: $goldentheme-header-background;
+    border-color: $goldentheme-headertext-color;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+
+}
+
+.btn-color-1 {
+  color: $button-theme-color;
+  background-color: $btn-outline-color1;
+  border-color: $btn-outline-color1;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $btn-outline-color1-active !important;
+    color: $button-theme-color !important;
+    border-color: $btn-outline-color1-active !important;
+  }
+}
+
+.btn-outline-removebtn {
+  @extend .btn-outline-customsecondary;
+  cursor: pointer;
+
+  &:active,
+  &:hover,
+  &:focus {
+  }
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.modal-header {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 1000;
+  white-space: pre-wrap;
+  border: none !important;
+
+  .close {
+    margin: -0.5rem -0.2rem -1rem auto !important;
+  }
+}
+
+::ng-deep {
+  .modal-content {
+    border-top-left-radius: $goldentheme-border-radius;
+    border-top-right-radius: $goldentheme-border-radius;
+    border-bottom-left-radius: $goldentheme-border-radius;
+    border-bottom-right-radius: $goldentheme-border-radius;
+    background-color: $goldentheme-panel-background;
+ }
+}
+
+.modal-body {
+  @media only screen and (max-width: 768px) {
+    max-height: 580px;
+    overflow: auto;
+  }
+}
+
+button[disabled] {
+  cursor: not-allowed !important;
+}
+
+.total-text {
+  font-weight: 600 !important;
+}
+
+.out-of-stock {
+  .out-of-stock-text {
+      margin: auto;
+      text-transform: uppercase;
+      color: $btn-outline-textcolor;
+      background: $outOfStock-background-color;
+      border: solid 1px $box-shadow-color;
+      border-radius: 20px;
+      padding: 6.5px 10px;
+  }
+}
+
+.btn-outline-modal {
+  @extend .btn-outline;
+}
+
+.page-heading {
+  text-align: center !important;
+  font-family: cursive;
+  margin-bottom: 15px !important;
+  color: $goldentheme-header-background;
+
+  @media only screen and (max-width: 768px) {
+    font-family: sans-serif;
+  }
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+::ng-deep {
+  .alert-dismissible {
+    .close {
+      @media only screen and (max-width: 768px) {
+        z-index: 0;
+      }
+    }
+  }
+  .alert-info {
+    background-color: $goldentheme-header-background !important;
+    color: $goldentheme-headertext-color !important;
+    border-radius: $goldentheme-border-radius;
+ }
+}
+
+.kupipakwa {
+  background-image: url($img-path + 'kupipakwa.png');
+}
+
+.pottali {
+  background-image: url($img-path + 'pottali.png');
+}
+
+.khalviya {
+  background-image: url($img-path + 'khalviya.png');
+}
+
+.display-inline {
+  @media screen and (min-width: 769px) {
+      display: inline !important; 
+  }
+}
+
+/*----firecrackers animation ---*/
+$particles: 50;
+$width: 500;
+$height: 500;
+
+// Create the explosion...
+$box-shadow: ();
+$box-shadow2: ();
+@for $i from 0 through $particles {
+  $box-shadow: $box-shadow,
+               random($width)-$width / 2 + px
+               random($height)-$height / 1.2 + px
+               hsl(random(360), 100, 50);
+  $box-shadow2: $box-shadow2, 0 0 #fff
+}
+@mixin keyframes ($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation-delay ($settings) {
+    -moz-animation-delay: $settings;
+    -webkit-animation-delay: $settings;
+    -o-animation-delay: $settings;
+    -ms-animation-delay: $settings;
+    animation-delay: $settings;
+}
+
+@mixin animation-duration ($settings) {
+    -moz-animation-duration: $settings;
+    -webkit-animation-duration: $settings;
+    -o-animation-duration: $settings;
+    -ms-animation-duration: $settings;
+    animation-duration: $settings;
+}
+
+@mixin animation ($settings) {
+    -moz-animation: $settings;
+    -webkit-animation: $settings;
+    -o-animation: $settings;
+    -ms-animation: $settings;
+    animation: $settings;
+}
+
+@mixin transform ($settings) {
+    transform: $settings;
+    -moz-transform: $settings;
+    -webkit-transform: $settings;
+    -o-transform: $settings;
+    -ms-transform: $settings;
+}
+
+.pyro {
+  position: relative !important;
+  z-index: 999;
+}
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: $box-shadow2;
+  @include animation((1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards));
+}
+    
+.pyro > .after {
+  @include animation-delay((1.25s, 1.25s, 1.25s));
+  @include animation-duration((1.25s, 1.25s, 6.25s));
+}
+        
+@include keyframes(bang) {
+  to {
+    box-shadow:$box-shadow;
+  }
+}
+    
+@include keyframes(gravity)  {
+  to {
+    @include transform(translateY(200px));
+    opacity: 0;
+  }
+}
+    
+@include keyframes(position) {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%;
+  }
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%;
+  }
+  40%, 59.9% {  
+    margin-top: 20%;
+    margin-left: 70%
+  }
+  60%, 79.9% {  
+    margin-top: 30%;
+    margin-left: 20%;
+  }
+  80%, 99.9% {  
+    margin-top: 30%;
+    margin-left: 80%;
+  }
+}
+
