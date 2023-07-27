@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-9 col-12 main-blog-container">
 
-                <div id="dropzone1" class="dropzone">
+                <div>
                     <img src="./../../../assets/images/images/Boswellia-serrata.jpg" alt=""
                         id="dragitem1" class="dragitem" draggable="true" (dragstart)="drag($event)">
                 </div>
@@ -135,8 +135,14 @@
                             </label>
                         </div>
                         <div class="col-12 form-label">
-                            <img *ngFor='let url of urls' [src]="url" alt="" class="chooseImg" id="dragitem6"
-                           draggable="true" (dragstart)="drag($event)">
+                           id url: {{urls}} 
+                           
+                            <img *ngFor='let url of urls' [src]="url" alt="" class="chooseImg" id="{{url}}"
+                           draggable="true" (dragstart)="drag($event)"> 
+
+                           <div class="img-container col-12 col-md-4" *ngFor="let item of this.productImages;let i=index">
+                                <img  draggable="true" (dragstart)="drag($event)" class="product-img chooseImg" [src]="currentlyUploadedImageSrc[i]" />
+                            </div>
                         </div>
                     </div>
                 </div>
