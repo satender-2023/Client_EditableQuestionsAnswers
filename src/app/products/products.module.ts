@@ -12,6 +12,7 @@ import { SafeResourceUrlPipe } from './../pipes/safe-resource-url.pipe';
 import { ConfirmOrderDetailsComponent } from './modals/confirm-order-details/confirm-order-details.component';
 import { CategoryMenuModule } from '../partial_views/category-menu/category-menu.module';
 import { AddCategoryModule } from './modals/add-category/add-category.module';
+import { SharedModule } from '../shared-module/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,6 @@ import { AddCategoryModule } from './modals/add-category/add-category.module';
     ProductListComponent,
     AddProductComponent,
     ProductDescriptionComponent,
-    SafeResourceUrlPipe,
     ConfirmOrderDetailsComponent
   ],
   imports: [
@@ -30,7 +30,8 @@ import { AddCategoryModule } from './modals/add-category/add-category.module';
     ReactiveFormsModule,
     CategoryMenuModule,
     AddCategoryModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    SharedModule
   ]
 })
 export class ProductsModule { }

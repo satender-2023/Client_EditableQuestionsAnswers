@@ -6,6 +6,7 @@ import { BlogsByCategoryComponent } from './blogs-by-category/blogs-by-category.
 
 import { AllBlogsComponent } from './all-blogs/all-blogs.component';
 import { AddBlogsComponent } from './add-blogs/add-blogs.component';
+import { SharedModule } from '../shared-module/shared.module';
 
 
 
@@ -14,7 +15,7 @@ import { AddBlogsComponent } from './add-blogs/add-blogs.component';
   declarations: [BlogsByCategoryComponent,AllBlogsComponent, AddBlogsComponent],
   imports: [
     CommonModule,
-    BlogsRoutingModule
+    BlogsRoutingModule,SharedModule
   ]
 })
 export class BlogsModule { }

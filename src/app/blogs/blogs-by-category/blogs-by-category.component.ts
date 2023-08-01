@@ -23,7 +23,7 @@ export class BlogsByCategoryComponent implements OnInit {
   }
 
   drag(event: DragEvent) {
-    event.dataTransfer!.setData('text', (event.target as HTMLElement).id);
+    event.dataTransfer!.setData('text', (event.currentTarget['parentElement'] as HTMLElement).id);
   }
 
   drop(event: DragEvent) {
@@ -51,12 +51,12 @@ export class BlogsByCategoryComponent implements OnInit {
     this.currentlyUploadedImageSrc.push(imgSrc);
   }
 
-  // getFiles(event) {
-  //   this.productImages=[];
-  //   for (var i = 0; i < event.target.files.length; i++) {
-  //     this.productImages.push(event.target.files[i]);
-  //     this.setCurrentlyUploadedImgArr(event.target.files[i]);
-  //         this.setCurrentlyUploadedImgArr(event.target.files[i])
-  //   }
-  // }
+  getFiles(event) {
+    this.productImages=[];
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.productImages.push(event.target.files[i]);
+      this.setCurrentlyUploadedImgArr(event.target.files[i]);
+          // this.setCurrentlyUploadedImgArr(event.target.files[i])
+    }
+  }
 }

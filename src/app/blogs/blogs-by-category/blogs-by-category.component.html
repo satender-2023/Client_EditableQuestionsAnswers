@@ -4,13 +4,19 @@
         <div>
             <h2 class="blog-heading">Blogs</h2>
         </div>
-
+<!-- resizable container -->
+<div class="resizable-image-container" mwlResizable id="dragitem21"
+draggable="true" (dragstart)="drag($event)">
+    
+</div>
+<!-- resizable container -->
         <div class="row">
             <div class="col-md-9 col-12 main-blog-container">
 
-                <div>
+                <div class="image-container resizable-image-container" mwlResizable id="dragitem1"
+                           draggable="true" (dragstart)="drag($event)">
                     <img src="./../../../assets/images/images/Boswellia-serrata.jpg" alt=""
-                        id="dragitem1" class="dragitem" draggable="true" (dragstart)="drag($event)">
+                        id="dragitem1">
                 </div>
 
                 <div class="blog-main-cc">
@@ -40,10 +46,10 @@
 
                         <p class="Significance">Significance of Bael Fruit</p>
                         <div>
-                            <div >
+                            <div class="image-container resizable-image-container" mwlResizable id="dragitem2"
+                           draggable="true" (dragstart)="drag($event)">
                             <img src="./../../../assets/images/images/medicine4.jpg" 
-                                alt="Significance_image" id="dragitem2" class="dragitem" draggable="true"
-                                (dragstart)="drag($event)">
+                                alt="Significance_image">
                             </div>
 
                             <p class="Significance-cc">The Indian summers are usually a medley of memories - the summer
@@ -73,10 +79,10 @@
                         <div>
                             <p class="Significance">Bael as Digestive Tonic</p>
 
-                            <div >
+                            <div class="image-container resizable-image-container" mwlResizable id="dragitem3"
+                           draggable="true" (dragstart)="drag($event)">
                                 <img src="./../../../assets/images/images/medicine3.png" 
-                                    alt="Significance_image" id="dragitem3" class="dragitem" draggable="true"
-                                    (dragstart)="drag($event)">
+                                    alt="Significance_image">
                             </div>
 
                             <p class="Significance-cc">Bael fruit juice is an excellent digestive tonic for all your gut
@@ -102,10 +108,10 @@
 
                             <p class="Rasahriday-products"><a href="">Dasamoolajeerakarishta</a></p>
 
-                            <div >
+                            <div class="image-container resizable-image-container" mwlResizable id="dragitem4"
+                           draggable="true" (dragstart)="drag($event)">
                                 <img src="./../../../assets/images/images/51a6J3jnbUL.jpg"
-                                     alt="Rasahriday_image" id="dragitem4"
-                                    class="dragitem" draggable="true" (dragstart)="drag($event)">
+                                     alt="Rasahriday_image">
                             </div>
 
                             <p class="Significance-cc">Dasamoolajeerakarishta is a traditional tonic combining
@@ -130,18 +136,16 @@
                         </div>
                         <div class="col-md-9 col-8">
                             <label class="custom-file-upload">
-                                <input type="file" (change)="onselectFile($event)"  multiple/>
+                                <input type="file" (change)="getFiles($event)"  multiple/>
                                 Choose Photo
                             </label>
                         </div>
                         <div class="col-12 form-label">
                            id url: {{urls}} 
                            
-                            <img *ngFor='let url of urls' [src]="url" alt="" class="chooseImg" id="{{url}}"
-                           draggable="true" (dragstart)="drag($event)"> 
-
-                           <div class="img-container col-12 col-md-4" *ngFor="let item of this.productImages;let i=index">
-                                <img  draggable="true" (dragstart)="drag($event)" class="product-img chooseImg" [src]="currentlyUploadedImageSrc[i]" />
+                            
+                           <div class="img-container col-12 col-md-4 resizable-image-container" mwlResizable *ngFor="let item of this.productImages;let i=index" id="{{item.name}}">
+                                <img  draggable="true" (dragstart)="drag($event)" class="product-img chooseImg" [src]="currentlyUploadedImageSrc[i] | safeResourceUrl" />
                             </div>
                         </div>
                     </div>

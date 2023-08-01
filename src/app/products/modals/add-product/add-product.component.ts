@@ -1,17 +1,18 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { SafeResourceUrlPipe } from 'src/app/pipes/safe-resource-url.pipe';
 import { CommonService } from 'src/app/services/common-service/common.service';
 import { LoaderService } from 'src/app/services/loader-service/loader.service';
 import { ProductService } from 'src/app/services/product-service/product.service';
-import {SafeResourceUrlPipe} from 'src/app/pipes/safe-resource-url.pipe';
 
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
-  providers:[SafeResourceUrlPipe]
+  providers: [SafeResourceUrlPipe]
+  
 })
 export class AddProductComponent implements OnInit {
   @Input() editMode; 
