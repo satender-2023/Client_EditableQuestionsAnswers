@@ -14,6 +14,7 @@ import { NotifierModule } from 'angular-notifier';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FooterComponent } from './partial_views/footer/footer.component';
 import { CategoryMenuModule } from '../app/partial_views/category-menu/category-menu.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { CategoryMenuModule } from '../app/partial_views/category-menu/category-
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
-    CategoryMenuModule,
+    CategoryMenuModule,AngularEditorModule , 
     BsDropdownModule.forRoot(),
     NotifierModule.withConfig({
       theme: 'material',
