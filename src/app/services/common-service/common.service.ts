@@ -17,6 +17,8 @@ export class CommonService {
   signUpUrl = "/api/signUp";
   productUrl: string = "/api/product";
   categoryUrl: string = "/api/category";
+  blogsUrl: string = "/api/blogs"; //blogs URL
+  galleryUrl: string = "/api/gallery"; //blogs URL
   cartUrl: string = "/api/cart";
   cartAllUrl = '/api/cartAll';
   orderUrl = "/api/order";
@@ -26,7 +28,7 @@ export class CommonService {
   productAllUrl = "/api/productAll";
   landingPageDetailsUrl = "/api/landingPageDetails";
   productPerCategoryUrl = "/api/productPerCategory";
-  isProd: boolean = true;
+  isProd: boolean = false;
  // prodUrl: String = "https://46.101.150.128";
   prodUrl: String = "https://rasahriday.com"
   devDomain: any = this.isProd ? this.prodUrl : "http://localhost:3000";
@@ -43,13 +45,17 @@ export class CommonService {
   finalCartUrl = this.devDomain + this.cartUrl;
   finalCartAllUrl = this.devDomain + this.cartAllUrl;
   finalMultipleCartItemsUrl = this.devDomain + this.multipleCartItemsUrl;
+  finalBlogsUrl = this.devDomain + this.blogsUrl;
+  finalGalleryUrl = this.devDomain + this.galleryUrl;
   userDetails: any;
   confirmationText = "Are you sure you want to delete";
   refreshCategory = new Subject();
+  refreshBlogs = new Subject();
   refreshProduct = new Subject();
   userLoggedIn = new Subject();
   sideBarStatus = new Subject();
   categoryMenus;
+  blogsMenus;
   currentCurrency = '₹';
   modalClass = 'modal-dialog-container';
   orderConfirmationClass='order-confirmation';
@@ -60,6 +66,7 @@ export class CommonService {
   isMobile: boolean;
   mobileWidth = 768;
   fireCrackersTimeout = 4000;
+ 
 
   constructor(
     private route: ActivatedRoute,
@@ -117,7 +124,9 @@ export class CommonService {
   refreshCategoryEvent(data) {
     this.refreshCategory.next(data);
   }
-
+  refreshBlogsEvent(data) {
+    this.refreshBlogs.next(data);
+  }
   refreshProductEvent(data) {
     this.refreshProduct.next(data);
   }
@@ -151,7 +160,12 @@ export class CommonService {
   setCategoriesGlobally(data) {
     this.categoryMenus = data;
   }
-
+  setBlogsGlobally(data) {
+    this.blogsMenus = data;
+  }
+  getBlogs() {
+    return this.blogsMenus;
+  }
   getCategories() {
     return this.categoryMenus;
   }

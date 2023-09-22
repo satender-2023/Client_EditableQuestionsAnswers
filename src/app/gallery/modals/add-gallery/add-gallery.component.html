@@ -6,6 +6,7 @@
         </button>
     </div>
     <div class="modal-body">
+
         <div class="form-group">
 
             <div class="row">
@@ -30,7 +31,8 @@
                     <p>Title</p>
                 </div>
                 <div class="col-md-9 col-8">
-                    <input type="text" class="form-control form-input">
+                    <input type="text" [(ngModel)]="gallery.galleryName" class="form-control form-input" name="Title"
+                        ngModel>
                 </div>
             </div>
 
@@ -42,8 +44,9 @@
                     <p>Description</p>
                 </div>
                 <div class="col-md-9 col-8">
-                    <textarea name="" id="" class="form-control form-input"></textarea>
-                    
+                    <textarea name="" id="" [(ngModel)]="gallery.galleryDescription" class="form-control form-input"
+                        name="Description" ngModel></textarea>
+
                 </div>
             </div>
 
@@ -56,7 +59,7 @@
                 </div>
                 <div class="col-md-9 col-8">
                     <label class="custom-file-upload">
-                        <input type="file" (change)="onselectFile($event)"  multiple/>
+                        <input type="file" (change)="onselectFile($event)" multiple name="Add Image" ngModel />
                         Choose Photo
                     </label>
                 </div>
@@ -71,14 +74,16 @@
 
             <div class="row choose-btn">
                 <div class="offset-md-1 col-md-5 col-6">
-                    <button type="button" class="btn btn-light btn-add photo-btn">Save</button>
+                    <button type="button" class="btn btn-light btn-add photo-btn" (click)="save()">Save</button>
 
                 </div>
                 <div class="col-md-4 col-6">
-                    <button type="button" class="btn btn-light btn-cancel photo-btn" (click)="modalRef?.hide()">cancel</button>
+                    <button type="button" class="btn btn-light btn-cancel photo-btn"
+                        (click)="modalRef?.hide()">cancel</button>
                 </div>
             </div>
 
         </div>
+
     </div>
 </div>

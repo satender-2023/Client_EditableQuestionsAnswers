@@ -7,6 +7,7 @@ import { AddGalleryComponent } from './modals/add-gallery/add-gallery.component'
 import { AddCategoryComponent } from './modals/add-category/add-category.component';
 import { GalleryByCategoryComponent } from './gallery-by-category/gallery-by-category.component';
 import { AddPhotosComponent } from './modals/add-photos/add-photos.component';
+import { FormsModule } from '@angular/forms';
 //import { AddCategoryComponent } from './modals/add-gallery/add-category.component';
 
 
@@ -17,7 +18,7 @@ import { AddPhotosComponent } from './modals/add-photos/add-photos.component';
     //AddCategoryComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule,FormsModule,
     GalleryRoutingModule
   ]
 })

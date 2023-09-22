@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component,SimpleChange,TemplateRef,  OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { NotifierService } from 'angular-notifier';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BlogService } from 'src/app/services/blog/blog.service';
+import { CommonService } from 'src/app/services/common-service/common.service';
+import { LoaderService } from 'src/app/services/loader-service/loader.service';
+import { ProductService } from 'src/app/services/product-service/product.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-add-blogs',
   templateUrl: './add-blogs.component.html',
@@ -8,15 +15,63 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 
 export class AddBlogsComponent implements OnInit {
+  @Input() editMode: any;
+  @Output() editingComplete = new EventEmitter<void>();
+  @ViewChild('addBlogTemplate') templateRef: TemplateRef<any>;
+  categoryForm: FormGroup;
+  categorySelectedObj = {
 
-  constructor(public modalRef: BsModalRef, private http: HttpClient) { }
+    isAllCategorySelected: true
+  }; 
+  blog: any = {
+    blogName: '',
+    blogDesc: ''
+  }
+  constructor(public modalRef: BsModalRef, 
+    private http: HttpClient, 
+    private productService: ProductService,
+    private loaderService: LoaderService,
+    private notifierService: NotifierService,
+    private commonService: CommonService,
+    private blogService: BlogService,
+    private modalService: BsModalService,
+  ) { }
 
   urls = [];
   ngOnInit(): void {
+   
+
+    if (this.editMode && this.editMode.status) {
+      this.setValuesToBeEdited(this.editMode.editedItem);
+    }
   }
+  
+  ngOnChanges(changes: SimpleChange) {
+    if(this.editMode && this.editMode.status && this.modalService['modalsCount'] == 0) {
+      this.openCategoryModal(this.templateRef);
+      this.setValuesToBeEdited(this.editMode.editedItem);
+    }
+  }
+  setValuesToBeEdited(editedItem) {
+    this.blog._id = editedItem._id; // Set the _id property
+    this.blog.blogName = editedItem.blogName;
+    this.blog.blogDesc = editedItem.blogDesc;
+  
+  }
+
+  openCategoryModal(templateRef:TemplateRef<any>): void{
+
+    const config= this.commonService.getModalConfig();
+    this.modalRef = this.modalService.show(templateRef, config);
+  }
+
+  hideCategoryModal() {
+    this.modalRef.hide();
+  }
+
   onselectFile(e: any) {
     if (e.target.files) {
-      for (let i = 0; i <  e.target.files.length; i++) {
+      for (let i = 0; i < e.target.files.length; i++) {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[i]);
         reader.onload = (events: any) => {
@@ -25,33 +80,48 @@ export class AddBlogsComponent implements OnInit {
       }
     }
   }
-  save() {
-    const description = 'upload'; // Replace this with the actual description value
-    const imageUrls = this.urls;
 
-    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL on your server to handle the save operation
-    const saveEndpoint = 'https://jsonplaceholder.typicode.com/todos/1';
-
-    const data = {
-      description: description,
-      imageUrls: imageUrls
-    };
-
-    this.http.post(saveEndpoint, data).subscribe(
-      (response) => {
-        // Handle the response from the server if needed
-        console.log('Save successful:', response);
-
-        // Clear the form after successful save if desired
-        this.urls = [];
-        // Clear the description textarea (you may need to use two-way binding [(ngModel)])
-        // this.description = '';
-      },
-      (error) => {
-        // Handle any errors that occurred during the save operation
-        console.error('Error saving data:', error);
-      }
-    );
+  save(formVal): void {
+    if (this.editMode && this.editMode.status) {
+      this.update(formVal);
+    } else {
+      this.add(formVal);
+    }
   }
 
+  submit(): void {
+
+  
+    if (this.editMode && this.editMode.status) {
+      this.update(this.blog); // Update existing blog
+    } else {
+      this.add(this.blog); // Add new blog
+    }
+  }
+  
+  update(data): void {
+    this.loaderService.display(true);
+    this.blogService.updateBlogs(data).subscribe(data => {
+      this.loaderService.display(false);
+      this.notifierService.notify('success', 'Blog updated successfully!');
+      this.handleCategoryChangeEvent(data);
+    });
+  }
+  add(data): void {
+    this.loaderService.display(true);
+    this.blogService.addBlogs(data).subscribe(data => {
+      this.loaderService.display(false);
+      this.notifierService.notify('success', 'Blog added successfully!');
+      this.handleCategoryChangeEvent(data);
+
+    });
+  }
+  
+  
+  handleCategoryChangeEvent(data) {
+    this.modalRef?.hide();
+    this.commonService.refreshBlogsEvent(data);
+    console.log(data)
+  }
+  
 }

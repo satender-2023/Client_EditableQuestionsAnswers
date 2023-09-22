@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SafeResourceUrlPipe} from 'src/app/pipes/safe-resource-url.pipe';
+import { SafeResourceUrlPipe } from 'src/app/pipes/safe-resource-url.pipe';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -12,13 +13,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providers: [SafeResourceUrlPipe]
 })
 export class BlogsByCategoryComponent implements OnInit {
-  productImages =[];
+  productImages = [];
   currentlyUploadedImageSrc = [];
 
   constructor(
     private safeResourceUrl: SafeResourceUrlPipe,
     private formBuilder: FormBuilder
-    ) { }
+  ) { }
 
   urls = [];
 
@@ -40,7 +41,7 @@ export class BlogsByCategoryComponent implements OnInit {
   // choose photos
   onselectFile(e: any) {
     if (e.target.files) {
-      for (let i = 0; i <  e.target.files.length; i++) {
+      for (let i = 0; i < e.target.files.length; i++) {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[i]);
         reader.onload = (events: any) => {
@@ -51,26 +52,25 @@ export class BlogsByCategoryComponent implements OnInit {
   }
 
   setCurrentlyUploadedImgArr(file) {
-    let imgSrc=URL.createObjectURL(file)
+    let imgSrc = URL.createObjectURL(file)
     this.currentlyUploadedImageSrc.push(imgSrc);
   }
 
   getFiles(event) {
-    this.productImages=[];
+    this.productImages = [];
     for (var i = 0; i < event.target.files.length; i++) {
       this.productImages.push(event.target.files[i]);
       this.setCurrentlyUploadedImgArr(event.target.files[i]);
-          // this.setCurrentlyUploadedImgArr(event.target.files[i])
+      // this.setCurrentlyUploadedImgArr(event.target.files[i])
     }
   }
 
   // angular editor
-  
+
 
   form: FormGroup;
 
   htmlContent1 = '';
-  htmlContent2 = '';
 
   config1: AngularEditorConfig = {
     editable: true,
@@ -107,53 +107,60 @@ export class BlogsByCategoryComponent implements OnInit {
     ]
   };
 
-  config2: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    minHeight: '5rem',
-    maxHeight: '15rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    sanitize: true,
-    toolbarPosition: 'bottom',
-    defaultFontName: 'Comic Sans MS',
-    defaultFontSize: '5',
-    defaultParagraphSeparator: 'p',
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ]
-  };
-
-
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      signature: ['', Validators.required]
-    });
-    console.log(this.htmlContent1);
+
   }
 
   onChange(event) {
     console.log('changed');
+    this.checkForImage(); // Call the method to check for images and add the class
   }
 
   onBlur(event) {
     console.log('blur ' + event);
   }
 
-  onChange2(event) {
-    console.warn(this.form.value);
+  checkForImage() {
+    console.log('Checking for images');
+
+    const editor = document.getElementById('editor1');
+    console.log('Editor element:', editor);
+
+    const images = editor.getElementsByTagName('img');
+    console.log('Number of images:', images.length);
+
+    const imageArray = Array.from(images) as HTMLImageElement[];
+
+    for (const image of imageArray) {
+      image.classList.add('your-dynamic-class1');
+      this.makeResizable(image); // Call the method to make images resizable
+    }
+  }
+
+  makeResizable(image: HTMLImageElement) {
+    // Add resize functionality to the image
+    image.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      const initialWidth = image.clientWidth;
+      const initialHeight = image.clientHeight;
+      const startX = e.clientX;
+      const startY = e.clientY;
+
+      const resize = (e) => {
+        const width = initialWidth + e.clientX - startX;
+        const height = initialHeight + e.clientY - startY;
+        image.style.width = `${width}px`;
+        image.style.height = `${height}px`;
+      };
+
+      const stopResize = () => {
+        window.removeEventListener('mousemove', resize);
+        window.removeEventListener('mouseup', stopResize);
+      };
+
+      window.addEventListener('mousemove', resize);
+      window.addEventListener('mouseup', stopResize);
+    });
   }
 
 }

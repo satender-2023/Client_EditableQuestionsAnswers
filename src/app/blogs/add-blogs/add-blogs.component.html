@@ -6,23 +6,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="form-group">
-            <!-- Category dropdown -->
-            <!-- <div class="row">
-                <div class="col-md-3 col-4 form-label1">
-                    <p> Category</p>
-                </div>
-                <div class="col-md-9 col-8">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>-- Select Category --</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-
-            </div> -->
-        </div>
+       
         <div class="form-group">
 
             <div class="row">
@@ -30,7 +14,9 @@
                     <p>Title</p>
                 </div>
                 <div class="col-md-9 col-8">
-                    <input type="text" class="form-control form-input">
+                    <input type="hidden" [(ngModel)]="blog._id" name="blogId">
+
+                    <input type="text" [(ngModel)]="blog.blogName" class="form-control form-input">
                 </div>
             </div>
 
@@ -42,7 +28,7 @@
                     <p>Description</p>
                 </div>
                 <div class="col-md-9 col-8">
-                    <textarea name="" id="" class="form-control form-input"></textarea>
+                    <textarea name="textarea" id="" [(ngModel)]="blog.blogDesc"  class="form-control form-input"></textarea>
 
                 </div>
             </div>
@@ -68,7 +54,7 @@
         <div class="form-group ">
             <div class="row choose-btn">
                 <div class="offset-md-1 col-md-5 col-6">
-                    <button type="button" class="btn btn-light btn-add photo-btn" (click) = "save()">Save</button>
+                    <button type="button" class="btn btn-light btn-add photo-btn" (click) = "submit()">Save</button>
                 </div>
                 <div class="col-md-4 col-6">
                     <button type="button" class="btn btn-light btn-cancel photo-btn"
