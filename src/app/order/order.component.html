@@ -62,6 +62,14 @@
                         <span>user address: </span>
                         <span>{{orderedItem.userAddress}}</span>
                     </div>
+                    <div class="user-address" *ngIf="orderedItem?.isPractitioner">
+                        <span>Practitioner: </span>
+                        <span>Yes</span>
+                    </div>
+                    <div class="user-address" *ngIf="orderedItem?.isPractitioner">
+                        <span>Registration Number: </span>
+                        <span>{{orderedItem.regNumber}}</span>
+                    </div>
             </div>
             <div class="cart-item-actionbtns" *ngIf="userDetails.isAdmin">
                 <button *ngIf="!orderedItem.orderAccepted" class="btn btn-outline place-order-btn"

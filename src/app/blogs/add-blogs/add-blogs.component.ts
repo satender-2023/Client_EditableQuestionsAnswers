@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component,SimpleChange,TemplateRef,  OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component,SimpleChange, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BlogService } from 'src/app/services/blog/blog.service';
 import { CommonService } from 'src/app/services/common-service/common.service';
 import { LoaderService } from 'src/app/services/loader-service/loader.service';
-import { ProductService } from 'src/app/services/product-service/product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularEditorConfig } from './../../../lib/config';
+import { AngularEditorComponent } from './../../../lib/angular-editor.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-blogs',
@@ -15,113 +15,161 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 
 export class AddBlogsComponent implements OnInit {
-  @Input() editMode: any;
-  @Output() editingComplete = new EventEmitter<void>();
-  @ViewChild('addBlogTemplate') templateRef: TemplateRef<any>;
-  categoryForm: FormGroup;
-  categorySelectedObj = {
+  @ViewChild(AngularEditorComponent) editor: AngularEditorComponent; // ViewChild reference to the AngularEditorComponent
 
-    isAllCategorySelected: true
-  }; 
-  blog: any = {
-    blogName: '',
-    blogDesc: ''
-  }
-  constructor(public modalRef: BsModalRef, 
-    private http: HttpClient, 
-    private productService: ProductService,
+  config1: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    minHeight: '15rem',
+    maxHeight: 'auto',
+    placeholder: 'Enter here...',
+    translate: 'no',
+    sanitize: false,
+    // toolbarPosition: 'top',
+    outline: true,
+    // defaultFontName: 'Comic Sans MS',
+    // defaultFontSize: '5',
+    // showToolbar: false,
+    defaultParagraphSeparator: 'p',
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'text-center',
+        class: 'text-center',
+      },
+      {
+        name: 'text-right',
+        class: 'text-right',
+      },
+      {
+        name: 'img-center',
+        class: 'img-center',
+      },
+      {
+        name: 'img-right',
+        class: 'img-right',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarHiddenButtons: [
+      // ['bold', 'italic'],
+      // ['fontSize']
+    ],
+      editHistoryLimit: 3,
+    imageResizeSensitivity: 2,
+  };
+
+  blogForm: FormGroup;
+  blogId: string;
+  editMode: boolean  = false;
+
+  constructor(
     private loaderService: LoaderService,
     private notifierService: NotifierService,
     private commonService: CommonService,
     private blogService: BlogService,
-    private modalService: BsModalService,
-  ) { }
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+  }
 
   urls = [];
   ngOnInit(): void {
-   
 
-    if (this.editMode && this.editMode.status) {
-      this.setValuesToBeEdited(this.editMode.editedItem);
-    }
-  }
-  
-  ngOnChanges(changes: SimpleChange) {
-    if(this.editMode && this.editMode.status && this.modalService['modalsCount'] == 0) {
-      this.openCategoryModal(this.templateRef);
-      this.setValuesToBeEdited(this.editMode.editedItem);
-    }
-  }
-  setValuesToBeEdited(editedItem) {
-    this.blog._id = editedItem._id; // Set the _id property
-    this.blog.blogName = editedItem.blogName;
-    this.blog.blogDesc = editedItem.blogDesc;
-  
-  }
+    this.createForm();
 
-  openCategoryModal(templateRef:TemplateRef<any>): void{
-
-    const config= this.commonService.getModalConfig();
-    this.modalRef = this.modalService.show(templateRef, config);
-  }
-
-  hideCategoryModal() {
-    this.modalRef.hide();
-  }
-
-  onselectFile(e: any) {
-    if (e.target.files) {
-      for (let i = 0; i < e.target.files.length; i++) {
-        var reader = new FileReader();
-        reader.readAsDataURL(e.target.files[i]);
-        reader.onload = (events: any) => {
-          this.urls.push(events.target.result);
-        }
+    this.route.paramMap.subscribe((params) => {
+      this.blogId = params.get('blogId')!;
+      if (this.blogId) {
+        this.editMode = true;
+        this.getBlogDetail(this.blogId);
       }
-    }
+    });
+
+
   }
 
-  save(formVal): void {
-    if (this.editMode && this.editMode.status) {
-      this.update(formVal);
-    } else {
-      this.add(formVal);
-    }
+  getBlogDetail(blogId: string): void {
+    this.blogService.getBlogDetail(blogId).subscribe((blog) => {
+      this.setValuesToBeEdited(blog);
+    })
   }
 
-  submit(): void {
+  createForm(): void{
+    this.blogForm = new FormGroup({
+      title: new FormControl('', Validators.required) , 
+      content: new FormControl('', Validators.required) ,      
+      category: new FormControl('', Validators.required),
+      aboutAuthor: new FormControl('', Validators.required),
+      author: new FormControl('', Validators.required),
+    })
+  }
 
+  setValuesToBeEdited(editedItem) {
+    this.blogId = editedItem._id;
+    this.blogForm.setValue({
+      title: editedItem.title,
+      content: editedItem.content,
+      category: editedItem.category,
+      author: editedItem.author,
+      aboutAuthor: editedItem.aboutAuthor || '',
+    });
   
-    if (this.editMode && this.editMode.status) {
-      this.update(this.blog); // Update existing blog
+  }
+  
+  submit(): void {
+    this.loaderService.display(true);
+    if (!this.blogForm.valid) {
+      return;
+    }
+
+    if (this.editMode) {
+      this.update(this.blogForm.value); // Update existing blog
     } else {
-      this.add(this.blog); // Add new blog
+      this.add(this.blogForm.value); // Add new blog
     }
   }
   
   update(data): void {
     this.loaderService.display(true);
-    this.blogService.updateBlogs(data).subscribe(data => {
+    this.blogService.updateBlogs(this.blogId, data).subscribe(updatedData => {
+
       this.loaderService.display(false);
       this.notifierService.notify('success', 'Blog updated successfully!');
-      this.handleCategoryChangeEvent(data);
+      this.handleCategoryChangeEvent(updatedData);
+    }, (error) => {
+      console.log('error', error);
     });
   }
+  
   add(data): void {
-    this.loaderService.display(true);
-    this.blogService.addBlogs(data).subscribe(data => {
+    this.blogService.addBlogs(data).subscribe(newData => {
       this.loaderService.display(false);
       this.notifierService.notify('success', 'Blog added successfully!');
-      this.handleCategoryChangeEvent(data);
-
+      this.handleCategoryChangeEvent(newData);
     });
   }
   
-  
   handleCategoryChangeEvent(data) {
-    this.modalRef?.hide();
-    this.commonService.refreshBlogsEvent(data);
-    console.log(data)
+    // this.modalRef?.hide();
+    this.router.navigate(['/blogs']);
+    // this.blogId = '';
+    // this.commonService.refreshCategoryEvent(data);
   }
   
+  onChange(event) {}
+  onBlur(event) {}
+
+
 }

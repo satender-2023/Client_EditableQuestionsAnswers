@@ -1,66 +1,76 @@
-<div class="confirm-order-modal">
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Add Blogs</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-            <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
+<div class="container confirm-order-modal">
+    <div class="row justify-content-center mt-3">
+        <h2 class="text-center gallery-heading mt-3">Add Blog</h2>
     </div>
+
     <div class="modal-body">
-       
-        <div class="form-group">
+       <form [formGroup]="blogForm">
 
-            <div class="row">
-                <div class="col-md-3 col-4 form-label">
-                    <p>Title</p>
-                </div>
-                <div class="col-md-9 col-8">
-                    <input type="hidden" [(ngModel)]="blog._id" name="blogId">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12 col-12">
 
-                    <input type="text" [(ngModel)]="blog.blogName" class="form-control form-input">
+                        <p class="form-label">Title</p>
+                        <div class="col-md-12 col-12">
+                            <input type="text" formControlName="title" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-        </div>
-        <div class="form-group">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <p class="form-label">Category</p>
+                        <div class="col-md-12 col-12">
+                            <input type="text" formControlName="category" class="form-control form-input">
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-3 col-4 form-label">
-                    <p>Description</p>
-                </div>
-                <div class="col-md-9 col-8">
-                    <textarea name="textarea" id="" [(ngModel)]="blog.blogDesc"  class="form-control form-input"></textarea>
-
+                    <div class="col-md-6 col-12">
+                        <p class="form-label">Author</p>
+                        <div class="col-md-12 col-12">
+                            <input type="text" formControlName="author" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <p class="form-label">About Author</p>
+                        <div class="col-md-12 col-12">
+                            <textarea rows="3" formControlName="aboutAuthor" class="form-control">
+                            </textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-3 col-4 form-label">
-                    <p>Add Image</p>
-                </div>
-                <div class="col-md-9 col-8">
-                    <label class="custom-file-upload">
-                        <input type="file" (change)="onselectFile($event)"  multiple/>
-                        Choose Photo
-                    </label>
-                </div>
-                <div class="col-12 form-label">
-                    <img *ngFor='let url of urls' [src]="url" alt="" class="chooseImg">
-                </div>
-            </div>
-        </div>
+            <div class="form-group">
+                <div class="row">
+                    <p class="form-label">Content</p>
+                    <div class="col-md-12 col-12 form-label">
+                        <angular-editor
+                            #editor
+                            id="editor1"
+                            class="content-editor"
+                            formControlName="content"
+                            [config]="config1"
+                            >
+                            <!-- (ngModelChange)="onChange($event)" -->
+                            <!-- (blur)="onBlur($event)" -->
+                        </angular-editor>
 
-        <div class="form-group ">
-            <div class="row choose-btn">
-                <div class="offset-md-1 col-md-5 col-6">
-                    <button type="button" class="btn btn-light btn-add photo-btn" (click) = "submit()">Save</button>
-                </div>
-                <div class="col-md-4 col-6">
-                    <button type="button" class="btn btn-light btn-cancel photo-btn"
-                        (click)="modalRef?.hide()">cancel</button>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="form-group ">
+                <div class="offset-md-2 col-md-8 col-12">
+                    <div class="row choose-btn">
+                        <button type="button" class="btn btn-light btn-add photo-btn" (click) = "submit()" [disabled]="!blogForm.valid">Save</button>
+                        <button type="button" class="btn btn-light btn-cancel photo-btn"
+                        routerLink="/blogs">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>

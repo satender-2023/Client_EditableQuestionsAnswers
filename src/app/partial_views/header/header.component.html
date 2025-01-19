@@ -32,7 +32,7 @@
         (click)="searchByPage(searchString.value)">Search</button>
       <!-- </form> -->
     </div>
-    <div class="col-md-3 header-nav d-none d-md-block">
+    <div class="col-md-4 header-nav d-none d-md-block">
       <span class="header-links">
         <a class="nav-links" href="/#/products">
           Products
@@ -50,9 +50,14 @@
           Orders
         </a>
       </span>
+      <span class="header-links">
+        <a class="nav-links" href="/#/blogs">
+          Blogs
+        </a>
+      </span>
       <span class="header-links" id="about-us-label" (click)="openAboutusModal()">About Us</span>
     </div>
-    <div *ngIf="userName" class="offset-lg-2 offset-md-2 col-1 btn-group d-none d-md-block loggedin-user" dropdown>
+    <div *ngIf="userName" class="offset-lg-1 offset-md-2 col-1 btn-group d-none d-md-block loggedin-user" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle"
         aria-controls="dropdown-basic">
         {{userName}}
@@ -65,7 +70,7 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="!userName && !this.loginPage" class="login-link-container d-none d-md-block col-md-7 col-3">
+    <div *ngIf="!userName && !this.loginPage" class="login-link-container d-none d-md-block col-md-6 col-3">
       <a class="login-link" href="/#/login">
         Login
         <fa-icon [icon]="faUserCircle">

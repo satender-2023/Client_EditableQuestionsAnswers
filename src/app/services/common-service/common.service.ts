@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalOptions } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { ConfirmOrderDetailsComponent } from 'src/app/products/modals/confirm-order-details/confirm-order-details.component';
-import { OrderService } from '../order-service/order.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +25,11 @@ export class CommonService {
   productAllUrl = "/api/productAll";
   landingPageDetailsUrl = "/api/landingPageDetails";
   productPerCategoryUrl = "/api/productPerCategory";
-  isProd: boolean = false;
+  // isProd: boolean = true;
+  isProd: boolean = true;
  // prodUrl: String = "https://46.101.150.128";
   prodUrl: String = "https://rasahriday.com"
+  productImgUrl: string = "https://rasahriday.com"
   devDomain: any = this.isProd ? this.prodUrl : "http://localhost:3000";
   finalloginDetailsUrl: string = this.devDomain + this.loginDetailsUrl;
   finalSignUpUrl = this.devDomain + this.signUpUrl;
@@ -50,12 +49,10 @@ export class CommonService {
   userDetails: any;
   confirmationText = "Are you sure you want to delete";
   refreshCategory = new Subject();
-  refreshBlogs = new Subject();
   refreshProduct = new Subject();
   userLoggedIn = new Subject();
   sideBarStatus = new Subject();
   categoryMenus;
-  blogsMenus;
   currentCurrency = '₹';
   modalClass = 'modal-dialog-container';
   orderConfirmationClass='order-confirmation';
@@ -125,7 +122,7 @@ export class CommonService {
     this.refreshCategory.next(data);
   }
   refreshBlogsEvent(data) {
-    this.refreshBlogs.next(data);
+    this.refreshCategory.next(data);
   }
   refreshProductEvent(data) {
     this.refreshProduct.next(data);
@@ -160,12 +157,7 @@ export class CommonService {
   setCategoriesGlobally(data) {
     this.categoryMenus = data;
   }
-  setBlogsGlobally(data) {
-    this.blogsMenus = data;
-  }
-  getBlogs() {
-    return this.blogsMenus;
-  }
+
   getCategories() {
     return this.categoryMenus;
   }
@@ -211,7 +203,8 @@ export class CommonService {
   }
 
   getProductImageToBeShown(productImage) {
-    let url = this.devDomain;
+    // let url = this.devDomain;
+    let url = this.productImgUrl;
     if (productImage) {
       return url + '/' + productImage.split(',')[0];
     }
@@ -249,8 +242,20 @@ export class CommonService {
     let userDetails = this.userDetails;
     data.userId = userDetails._id;
     data.userName = userDetails.userName;
-    data.userAddress = userDetails.address;
-    data.userPhoneNumber = userDetails.phoneNumber
+    data.userAddress = `${
+      userDetails.address
+    }${
+      userDetails.city ? ', ' + userDetails.city : ''
+    }${
+      userDetails.state ? ', ' + userDetails.state : ''
+    }${
+      userDetails.pincode ? ', ' + userDetails.pincode : ''
+    }`;
+    data.userPhoneNumber = userDetails.phoneNumber;
+    data.isPractitioner = userDetails.isPractitioner;
+    if (userDetails.isPractitioner) {
+      data.regNumber = userDetails.regNumber
+    }
   }
 
   decrementQuantity(product) {

@@ -41,7 +41,9 @@ export class ConfirmOrderDetailsComponent implements OnInit {
           userAddress: this.productList.userAddress,
           userPhoneNumber: this.productList.userPhoneNumber,
           price: this.productList.price,
-          deliveryCharges: this.productList.deliveryCharges
+          deliveryCharges: this.productList.deliveryCharges,
+          isPractitioner: this.productList.isPractitioner,
+          regNumber: this.productList.regNumber
         }
    }
   }
@@ -59,12 +61,19 @@ export class ConfirmOrderDetailsComponent implements OnInit {
   setDetailsToBeEdited() {
     this.editedProduct ={
       userAddress: this.product.userAddress,
-      userPhoneNumber: this.product.userPhoneNumber
+      userPhoneNumber: this.product.userPhoneNumber,
+      ...(
+        this.product?.isPractitioner ?
+        {regNumber: this.product.regNumber} :
+      {}),
     }
   }
   saveEditedDetails() {
     this.product.userAddress = this.editedProduct.userAddress;
     this.product.userPhoneNumber = this.editedProduct.userPhoneNumber;
+    if (this.product.isPractitioner) {
+      this.product.regNumber = this.editedProduct.regNumber
+    }
   }
 
   save() {

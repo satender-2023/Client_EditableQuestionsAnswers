@@ -1,0 +1,31 @@
+@import "./../../../assets/scss/common.scss";
+
+.card-main-container {
+    order: 1px solid gainsboro;
+    box-shadow: 0px 2px 2px 2px darkgray;
+    border-radius: 25px;
+    background: #e3dfce;
+    margin-top: 15px;
+    padding-top: 21px;
+    overflow: hidden;
+    .card-cat-author {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 15px;
+        font-weight: 500;
+        .highlight {
+            font-weight: 700;
+        }
+    }
+
+    .blog-banner-img {
+        width: 100%;
+        max-height: 350px;
+    }
+
+    .blog-content img {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}

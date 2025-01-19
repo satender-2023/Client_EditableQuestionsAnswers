@@ -1,6 +1,13 @@
 @import "./../../../assets/scss/common.scss";
 @import "./../../../assets/scss/variables.scss";
 
+::ng-deep .modal-content {
+    background-color: #fdfcf7;
+}
+
+.confirm-order-modal {
+    background-color: #fdfcf7;
+}
 .form-group {
     margin-bottom: 1rem;
     display: flex;
@@ -14,8 +21,9 @@
     .form-label {
         padding-left: 1.9rem;
         font-size: inherit;
-        padding-top: calc(0.375rem + 1px);
-        padding-bottom: calc(0.375rem + 1px);
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 0;
     }
 
     .form-input {
@@ -72,9 +80,19 @@
         height: 80px;
         margin: 6px;
     }
+    .choose-btn {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 }
 
 .edit-delete-btncontainer {
     vertical-align: sub !important;
+}
+
+@media (min-width: 576px) {
+    ::ng-deep .modal-dialog {
+        max-width: 98%;
+    }
 }

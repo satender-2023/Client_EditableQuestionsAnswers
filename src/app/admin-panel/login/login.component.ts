@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product-service/product.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common-service/common.service';
+import { AddressService } from 'src/app/services/address/address.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,18 @@ import { CommonService } from 'src/app/services/common-service/common.service';
 export class LoginComponent implements OnInit {
   isSignUpMode = false;
   faArrowRight = faArrowRight;
+  public isPractitioner: boolean;
+  login:any={username:"",password:""};
+  public states = [];
 
   constructor(
     private productService :ProductService,
     private commonService: CommonService,
-    private router:Router
-    ) { }
-   login:any={username:"",password:""};
+    private router:Router,
+    private addressService: AddressService,
+  ) {
+    this.states = this.addressService.getStateList();
+  }
 
   ngOnInit(): void {
     if(localStorage.getItem('loggedIn')=="true") {
@@ -72,7 +78,15 @@ export class LoginComponent implements OnInit {
   setLoggedInUserDetails(userDetails) {
     const formattedUserDetails ={
       userName: userDetails.username,
+      firstName: userDetails.firstName, //new
+      middleName: userDetails.middleName, //new
+      lastName: userDetails.lastName, //new
       address: userDetails.address,
+      city: userDetails.city,
+      state: userDetails.state,
+      pincode: userDetails.pincode,
+      isPractitioner: userDetails.isPractitioner,
+      regNumber: userDetails.regNumber,
       phoneNumber: userDetails.phoneNumber,
       isAdmin: userDetails.isAdmin,
       _id: userDetails._id
@@ -94,6 +108,14 @@ export class LoginComponent implements OnInit {
   keyPressEvent(event) {
     if(event.keyCode==13) {
       this.validateLoginDetails();
+    }
+  }
+  keyPressEventForCharacter(event: KeyboardEvent): void {
+    const charCode = event.charCode || event.keyCode;
+    const char = String.fromCharCode(charCode);
+
+    if (!/^[a-zA-Z]*$/.test(char) && charCode !== 8) {
+      event.preventDefault();
     }
   }
 

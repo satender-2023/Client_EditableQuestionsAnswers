@@ -122,6 +122,9 @@ export class CartComponent implements OnInit {
   }
 
   confirmOrder(cartItem, isMultipleItems?) {
+
+  console.log("==cartItem====", cartItem);
+
     this.openOrderConfirmationModal(cartItem , isMultipleItems);
   }
 

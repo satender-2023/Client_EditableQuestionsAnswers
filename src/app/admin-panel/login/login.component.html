@@ -1,51 +1,127 @@
-<div class="login-panel-container">
+<div class="login-panel-container" [ngClass]="{registrationBox:isSignUpMode}">
     <fieldset>
         <legend class="login-register" *ngIf="!isSignUpMode">Login:</legend>
         <legend class="login-register" *ngIf="isSignUpMode">Register:</legend>
-        <div class="form-group row field-container">
-        <label for="username" class="col-4 col-form-label">Username</label> 
-        <div class="col-8">
-            <input id="username" name="username" [(ngModel)]="login.username" placeholder="Enter your username" (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
-        </div>
-        </div>
-        <div class="form-group row field-container">
-        <label for="password" class="col-4 col-form-label">Password</label> 
-        <div class="col-8">
-            <input id="password" name="password" [(ngModel)]="login.password" (keypress)="keyPressEvent($event)" placeholder="Enter your password" type="password" class="form-control" required="required">
-        </div>
-        </div> 
         <div class="form-group row field-container" *ngIf="isSignUpMode">
-            <label for="password" class="col-4 col-form-label">Confirm Password</label> 
+            <label for="username" class="col-4 col-form-label">Practitioner?</label>
             <div class="col-8">
-                <input id="confirmPassword" name="confirmPassword" [(ngModel)]="login.confirmPassword" (keypress)="keyPressEvent($event)" placeholder="Enter your password" type="password" class="form-control" required="required">
+                <input [(ngModel)]="login.isPractitioner" (onchange)="login.isPractitioner = !login.isPractitioner" type="checkbox"
+                    class="form-control justify-content-start practicener-checkbox" >
             </div>
-            </div> 
+        </div>
+
+        <div class="form-group row field-container" *ngIf="isSignUpMode && login.isPractitioner">
+            <label for="username" class="col-4 col-form-label required">Registartion Number</label>
+            <div class="col-8">
+                <input id="regNumber" name="regNumber" [(ngModel)]="login.regNumber" placeholder="Enter your Registration Number"
+                (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required" #regNumberInput="ngModel"
+                [ngClass]="{'is-invalid': regNumberInput.invalid || (isSignUpMode && login.isPractitioner && !login.regNumber)}">
+            </div>
+        </div>
+
+        <div class="form-group row field-container">
+            <label for="username" class="col-4 col-form-label">Username</label>
+
+            <div class="col-8">
+                <input id="username" name="username" [(ngModel)]="login.username" placeholder="Enter your username"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group row field-container">
+            <label for="password" class="col-4 col-form-label">Password</label>
+            <div class="col-8">
+                <input id="password" name="password" [(ngModel)]="login.password" (keypress)="keyPressEvent($event)"
+                    placeholder="Enter your password" type="password" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group row field-container" *ngIf="isSignUpMode">
+            <label for="password" class="col-4 col-form-label">Confirm Password</label>
+            <div class="col-8">
+                <input id="confirmPassword" name="confirmPassword" [(ngModel)]="login.confirmPassword"
+                    (keypress)="keyPressEvent($event)" placeholder="Enter your password" type="password"
+                    class="form-control" required="required">
+            </div>
+        </div>
+                <!----------------------------- full name ------------------- -->
+                <div class="form-group row field-container" *ngIf="isSignUpMode">
+                    <label for="password" class="col-4 col-form-label required">Full Name</label>
+                    <div class="col-8 full-name-box">
+        
+                        <div class="col-md-4 col-12 firstNameField">
+                            <input id="firstName" name="firstName" [(ngModel)]="login.firstName"
+                            (keypress)="keyPressEventForCharacter($event)" placeholder="Enter your First Name" type="text"
+                            class="form-control" required="required"     #firstNameInput="ngModel" 
+                            [ngClass]="{'is-invalid': firstNameInput.invalid || (isSignUpMode && login.username && !login.firstName)}">
+                        </div>
+        
+                        <div class="col-md-4 col-12 firstNameField middleName">
+                            <input id="middleName" name="middleName" [(ngModel)]="login.middleName"
+                            (keypress)="keyPressEventForCharacter($event)" placeholder="Enter your Middle Name" type="text"
+                            class="form-control" required="required">
+                        </div>
+        
+                        <div class="col-md-4 col-12 firstNameField">
+                            <input id="lastName" name="lastName" [(ngModel)]="login.lastName"
+                            (keypress)="keyPressEventForCharacter($event)" placeholder="Enter your Last Name" type="text"
+                            class="form-control" required="required"  #lastNameInput="ngModel" 
+                            [ngClass]="{'is-invalid': lastNameInput.invalid || (isSignUpMode && login.username && !login.lastName)}">
+                        </div>
+                
+                    </div>
+                </div>
+        <div class="form-group row field-container" *ngIf="isSignUpMode">
+            <label for="username" class="col-4 col-form-label">Phone Number</label>
+            <div class="col-8">
+                <input id="phoneNumber" name="phoneNumber" [(ngModel)]="login.phoneNumber" placeholder="Enter your Phone Number"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
+            </div>
+        </div>
 
         <div class="form-group row field-container" *ngIf="isSignUpMode">
-            <label for="username" class="col-4 col-form-label">Address</label> 
+            <label for="username" class="col-4 col-form-label">Address</label>
             <div class="col-8">
-                <input id="address" name="address" [(ngModel)]="login.address" placeholder="Enter your address" (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
+                <input id="address" name="address" [(ngModel)]="login.address" placeholder="Enter your address"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
             </div>
         </div>
         <div class="form-group row field-container" *ngIf="isSignUpMode">
-            <label for="username" class="col-4 col-form-label">Phone Number</label> 
+            <label for="username" class="col-4 col-form-label">City</label>
             <div class="col-8">
-                <input id="phoneNumber" name="phoneNumber" [(ngModel)]="login.phoneNumber" placeholder="Enter your phone number" (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
+                <input id="city" name="city" [(ngModel)]="login.city" placeholder="Enter your City"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
             </div>
         </div>
-        
+        <div class="form-group row field-container" *ngIf="isSignUpMode">
+            <label for="username" class="col-4 col-form-label">State</label>
+            <div class="col-8">
+                <select [(ngModel)]="login.state" aria-placeholder="Select State" (onchange)="keyPressEvent($event)" class="form-control" required="required">
+                    <option *ngFor ="let state of states" [value]="state?.label">{{state?.label}}</option>
+                </select>
+                <!-- <input id="state" name="state" [(ngModel)]="login.state" placeholder="Enter your state"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required"> -->
+            </div>
+        </div>
+        <div class="form-group row field-container" *ngIf="isSignUpMode">
+            <label for="username" class="col-4 col-form-label">Pincode</label>
+            <div class="col-8">
+                <input id="pincode" name="pincode" [(ngModel)]="login.pincode" placeholder="Enter your Pincode"
+                    (keypress)="keyPressEvent($event)" type="text" class="form-control" required="required">
+            </div>
+        </div>
 
         <div class="form-group row">
-        <div class="offset-4 col-8 action-btns">
-            <button name="submit" type="submit" class="btn btn-outline-customsecondary submit-btn" (click)="loginToApplication()">Submit</button>
-            <button *ngIf="!isSignUpMode" class="btn btn-outline login-btn" (click)="setSignUpMode()">Register</button>
-            <button *ngIf="isSignUpMode" class="btn btn-outline login-btn" (click)="setLoginMode()">Login</button>
-            <!-- <a class="switch-mode" *ngIf="!isSignUpMode" href="javascript:void(0)" (click)="setSignUpMode()">Register <fa-icon class="hand-cursor edit-icon arrowright-icon" [icon]="faArrowRight"></fa-icon></a>
+            <div class="offset-4 col-8 action-btns">
+                <button name="submit" type="submit" class="btn btn-outline-customsecondary submit-btn"
+                    (click)="loginToApplication()">Submit</button>
+                <button *ngIf="!isSignUpMode" class="btn btn-outline login-btn"
+                    (click)="setSignUpMode()">Register</button>
+                <button *ngIf="isSignUpMode" class="btn btn-outline login-btn" (click)="setLoginMode()">Login</button>
+                <!-- <a class="switch-mode" *ngIf="!isSignUpMode" href="javascript:void(0)" (click)="setSignUpMode()">Register <fa-icon class="hand-cursor edit-icon arrowright-icon" [icon]="faArrowRight"></fa-icon></a>
             <a class="switch-mode" *ngIf="isSignUpMode" href="javascript:void(0)" (click)="setLoginMode()">Login <fa-icon class="hand-cursor edit-icon arrowright-icon" [icon]="faArrowRight"></fa-icon></a> -->
-        </div>
+            </div>
         </div>
     </fieldset>
-</div> 
+</div>
 
 
 <i class="fa-light fa-arrow-right"></i>

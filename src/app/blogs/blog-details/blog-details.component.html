@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 class="text-center gallery-heading">{{blog?.title}}</h2>
+    </div>
+    <br>
+    <div class="col-md-12 card-main-container">
+        <div class="row">
+            <p class="card-cat-author">
+                <span>
+                    <span class="highlight">Category:</span> {{blog?.category}}
+                </span>
+                <span>
+                    <span class="highlight">Author:</span> {{blog?.author}}
+                </span>
+            </p>
+            <div class="container">
+                <img [src]="blog?.image" class="blog-banner-img"/>
+            </div>
+            <div class="col-md-12 col-sm-12 justify-content blog-content" [innerHtml]="blog?.content"></div>
+            <div *ngIf="blog?.aboutAuthor" class="col-md-12 col-sm-12 justify-content blog-content">
+                <h4 class="highlight">About Author</h4>
+                {{blog?.aboutAuthor}}
+            </div>
+        </div>
+    </div>
+</div>

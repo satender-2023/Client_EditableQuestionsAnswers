@@ -48,4 +48,36 @@ $goldenthemellogin-borderradius: 10px !important;
         }
     }
 
+    .practicener-checkbox {
+        width: 25px;
+        height: 30px;
+    }
+
 }
+.registrationBox {
+    width: 70%;
+  
+    .full-name-box {
+      padding: 0;
+  
+      @media only screen and (max-width: 768px) {
+        display: block;
+      }
+  
+      .firstNameField {
+        display: inline-block;
+      }
+      .middleName {
+        margin: 5px 0px 5px 0px;
+      }
+    }
+  }
+  .required:after {
+    content:" *";
+    color: red;
+  }
+  .is-invalid {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  
